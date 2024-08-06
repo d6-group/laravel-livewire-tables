@@ -30,13 +30,13 @@
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
 
         @class([
-            'hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
+            'hidden bg-white dark:bg-gray-700 dark:text-white' => ($component->isTailwind() || $component->isDaisyUI()),
             'd-none' => $component->isBootstrap()
         ])
     >
         <td
             @class([
-                'pt-4 pb-2 px-4' => $component->isTailwind(),
+                'pt-4 pb-2 px-4' => ($component->isTailwind() || $component->isDaisyUI()),
                 'pt-3 p-2' => $component->isBootstrap(),
             ])
             colspan="{{ $colspan }}"
@@ -53,6 +53,11 @@
                             'block mb-2 sm:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
                             'block mb-2 md:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
                             'block mb-2 lg:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+                            
+                            'block mb-2' => $component->isDaisyUI() && $column->shouldCollapseAlways(),
+                            'block mb-2 sm:hidden' => $component->isDaisyUI() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'block mb-2 md:hidden' => $component->isDaisyUI() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'block mb-2 lg:hidden' => $component->isDaisyUI() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
                             
                             'd-block mb-2' => $component->isBootstrap() && $column->shouldCollapseAlways(),
                             'd-block mb-2 d-sm-none' => $component->isBootstrap() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),

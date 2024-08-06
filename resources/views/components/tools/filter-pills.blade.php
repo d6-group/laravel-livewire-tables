@@ -41,6 +41,15 @@
                                 <span class="sr-only">@lang('Remove filter option')</span>
                                 <x-heroicon-m-x-mark class="h-2 w-2" />
                             </button>
+                        @elseif ($component->isDaisyUI())
+                            <button
+                                wire:click="resetFilter('{{ $filter->getKey() }}')"
+                                type="button"
+                                class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-indigo-400 hover:bg-indigo-200 hover:text-indigo-500 focus:outline-none focus:bg-indigo-500 focus:text-white"
+                            >
+                                <span class="sr-only">@lang('Remove filter option')</span>
+                                <x-heroicon-m-x-mark class="h-2 w-2" />
+                            </button>
                         @else
                             <a
                                 href="#"
@@ -63,6 +72,15 @@
             @endforeach
 
             @if ($component->isTailwind())
+                <button
+                    wire:click.prevent="setFilterDefaults"
+                    class="focus:outline-none active:outline-none"
+                >
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-200 dark:text-gray-900">
+                        @lang('Clear')
+                    </span>
+                </button>
+            @elseif ($component->isDaisyUI())
                 <button
                     wire:click.prevent="setFilterDefaults"
                     class="focus:outline-none active:outline-none"

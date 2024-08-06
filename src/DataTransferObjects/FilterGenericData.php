@@ -22,6 +22,7 @@ class FilterGenericData
             'isBootstrap' => ($this->component->isBootstrap4() || $this->component->isBootstrap5()),
             'isBootstrap4' => $this->component->isBootstrap4(),
             'isBootstrap5' => $this->component->isBootstrap5(),
+            'isDaisyUI' => $this->component->isDaisyUI(),
         ];
     }
 }

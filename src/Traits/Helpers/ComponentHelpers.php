@@ -89,6 +89,11 @@ trait ComponentHelpers
         return $this->getTheme() === 'bootstrap-5';
     }
 
+    public function isDaisyUI(): bool
+    {
+        return $this->getTheme() === 'daisyui';
+    }
+
     /**
      * Get the translated empty message of the table
      */

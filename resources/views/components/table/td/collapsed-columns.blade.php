@@ -23,6 +23,27 @@
                 </button>
             @endif
         </td>
+    @elseif ($component->isDaisyUI())
+        <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}"
+            {{
+                $attributes
+                    ->merge(['class' => 'p-3 table-cell text-center '])
+                    ->class(['sm:hidden' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet()])
+                    ->class(['md:hidden' => !$component->shouldCollapseAlways() && !$component->shouldCollapseOnTablet() && $component->shouldCollapseOnMobile()])
+                    ->class(['lg:hidden' => !$component->shouldCollapseAlways() && ($component->shouldCollapseOnTablet() || $component->shouldCollapseOnMobile())])
+            }}
+            :class="currentlyReorderingStatus ? 'laravel-livewire-tables-reorderingMinimised' : ''"
+        >
+            @if (! $hidden)
+                <button
+                    x-cloak x-show="!currentlyReorderingStatus"
+                    x-on:click.prevent="$dispatch('toggle-row-content', {'tableName': '{{ $tableName }}', 'row': {{ $rowIndex }}}); open = !open"
+                >
+                    <x-heroicon-o-plus-circle x-cloak x-show="!open" class="text-green-600 h-6 w-6" />
+                    <x-heroicon-o-minus-circle x-cloak x-show="open" class="text-yellow-600 h-6 w-6" />
+                </button>
+            @endif
+        </td>
     @elseif ($component->isBootstrap())
         <td x-data="{open:false}" wire:key="{{ $tableName }}-collapsingIcon-{{ $rowIndex }}-{{ md5(now()) }}" 
             {{

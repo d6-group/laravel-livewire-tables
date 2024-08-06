@@ -69,6 +69,7 @@ trait FilterConfiguration
             'filterLayout' => $genericDisplayData['filterLayout'],
             'tableName' => $genericDisplayData['tableName'],
             'isTailwind' => $genericDisplayData['isTailwind'],
+            'isDaisyUI' => $genericDisplayData['isDaisyUI'],
             'isBootstrap' => ($genericDisplayData['isBootstrap4'] || $genericDisplayData['isBootstrap5']),
             'isBootstrap4' => $genericDisplayData['isBootstrap4'],
             'isBootstrap5' => $genericDisplayData['isBootstrap5'],

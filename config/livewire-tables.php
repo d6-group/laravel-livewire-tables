@@ -2,7 +2,7 @@
 
 return [
     /**
-     * Options: tailwind | bootstrap-4 | bootstrap-5.
+     * Options: tailwind | bootstrap-4 | bootstrap-5 | daisyui.
      */
     'theme' => 'tailwind',
 
