@@ -146,6 +146,8 @@ Example dropdown for the toolbar:
             </div>
         </div>
     </div>
+@elseif ($component->isDaisyUI())
+    <div><!-- Implement Other Themes if needed--></div>
 @elseif ($component->isBootstrap())
     <div><!-- Implement Other Themes if needed--></div>
 @endif

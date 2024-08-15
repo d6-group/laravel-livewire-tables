@@ -2,7 +2,6 @@
 @props(['rowID', 'rowIndex'])
 
 @php($theme = $component->getTheme())
-
 <x-livewire-tables::table.td.plain x-cloak x-show="currentlyReorderingStatus" wire:key="{{ $tableName }}-tbody-reorder-{{ $rowID }}" :displayMinimisedOnReorder="false">
     <svg
         x-cloak x-show="currentlyReorderingStatus"
@@ -10,6 +9,7 @@
         fill="none" stroke="currentColor"
         viewBox="0 0 24 24"
         @class([
+            'w-4 h-4' => $theme === 'daisyui',
             'inline w-4 h-4' => $theme === 'tailwind',
             'd-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
         ])

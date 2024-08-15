@@ -7,12 +7,12 @@
 
 <div @class([
         'd-md-flex justify-content-between mb-3' => $component->isBootstrap(),
-        'md:flex md:justify-between mb-4 px-4 md:p-0' => $component->isTailwind(),
+        'md:flex md:justify-between mb-4 px-4 md:p-0' => ($component->isTailwind() || $component->isDaisyUI()),
     ])
 >
     <div @class([
             'd-md-flex' => $component->isBootstrap(),
-            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
+            'w-full mb-4 md:mb-0 md:w-2/4 md:flex space-y-4 md:space-y-0 md:space-x-2' => ($component->isTailwind() || $component->isDaisyUI()),
         ])
     >
         <div x-cloak x-show="!currentlyReorderingStatus">
@@ -43,7 +43,7 @@
     <div x-cloak x-show="!currentlyReorderingStatus"         
         @class([
             'd-md-flex' => $component->isBootstrap(),
-            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => $component->isTailwind(),
+            'md:flex md:items-center space-y-4 md:space-y-0 md:space-x-2' => ($component->isTailwind() || $component->isDaisyUI()),
         ])
     >
         @if ($component->hasConfigurableAreaFor('toolbar-right-start'))

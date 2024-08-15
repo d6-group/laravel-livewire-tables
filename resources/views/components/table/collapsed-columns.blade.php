@@ -34,13 +34,13 @@
             'd-none' => $component->isBootstrap()
         ])
     >
-        <td
-            @class([
-                'pt-4 pb-2 px-4' => ($component->isTailwind() || $component->isDaisyUI()),
-                'pt-3 p-2' => $component->isBootstrap(),
-            ])
+    <td
+    @class([
+        'pt-4 pb-2 px-4' => ($component->isTailwind() || $component->isDaisyUI()),
+        'pt-3 p-2' => $component->isBootstrap(),
+    ])
             colspan="{{ $colspan }}"
-        >
+            >
             <div>
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
@@ -49,16 +49,11 @@
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$this->getPrimaryKey()} }}-collapsed-contents-{{ $colIndex }}"
                     
                         @class([
-                            'block mb-2' => $component->isTailwind() && $column->shouldCollapseAlways(),
-                            'block mb-2 sm:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
-                            'block mb-2 md:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
-                            'block mb-2 lg:hidden' => $component->isTailwind() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
-                            
-                            'block mb-2' => $component->isDaisyUI() && $column->shouldCollapseAlways(),
-                            'block mb-2 sm:hidden' => $component->isDaisyUI() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
-                            'block mb-2 md:hidden' => $component->isDaisyUI() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
-                            'block mb-2 lg:hidden' => $component->isDaisyUI() && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
-                            
+                            'block mb-2' => ($component->isTailwind() || $component->isDaisyUI()) && $column->shouldCollapseAlways(),
+                            'block mb-2 sm:hidden' => ($component->isTailwind() || $component->isDaisyUI()) && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
+                            'block mb-2 md:hidden' => ($component->isTailwind() || $component->isDaisyUI()) && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),
+                            'block mb-2 lg:hidden' => ($component->isTailwind() || $component->isDaisyUI()) && !$column->shouldCollapseAlways() && ($column->shouldCollapseOnTablet() || $column->shouldCollapseOnMobile()),
+
                             'd-block mb-2' => $component->isBootstrap() && $column->shouldCollapseAlways(),
                             'd-block mb-2 d-sm-none' => $component->isBootstrap() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),
                             'd-block mb-2 d-md-none' => $component->isBootstrap() && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && $column->shouldCollapseOnMobile(),

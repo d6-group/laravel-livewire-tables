@@ -1,8 +1,9 @@
 <div>
-    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isDaisyUI :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
 
     <div @class([
         'rounded-md shadow-sm' => $isTailwind,
+        'rounded-md shadow-sm' => $isDaisyUI,
         'inline' => $isBootstrap,
     ])>
         <select
@@ -11,6 +12,7 @@
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             @class([
                     'block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:text-white dark:border-gray-600' => $isTailwind,
+                    'w-full select select-sm select-bordered text-base-content' => $isDaisyUI,
                     'form-control' => $isBootstrap4,
                     'form-select' => $isBootstrap5,
                 ])

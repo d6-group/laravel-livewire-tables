@@ -50,7 +50,7 @@
 @elseif ($component->isDaisyUI())
     <th scope="col" {{
         $attributes->merge($customAttributes)
-            ->class(['px-6 py-3 text-left text-xs font-medium whitespace-nowrap text-gray-500 uppercase tracking-wider dark:bg-gray-800 dark:text-gray-400' => $customAttributes['default'] ?? true])
+            ->class(['px-6 py-3 text-left font-bold whitespace-nowrap uppercase tracking-wider' => $customAttributes['default'] ?? true])
             ->class(['hidden' => $column->shouldCollapseAlways()])
             ->class(['hidden md:table-cell' => $column->shouldCollapseOnMobile()])
             ->class(['hidden lg:table-cell' => $column->shouldCollapseOnTablet()])
@@ -65,7 +65,7 @@
                     wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
                     {{
                         $attributes->merge($customSortButtonAttributes)
-                            ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider group focus:outline-none dark:text-gray-400' => $customSortButtonAttributes['default'] ?? true])
+                            ->class(['flex items-center space-x-1 text-left leading-4 font-bold uppercase tracking-wider' => $customSortButtonAttributes['default'] ?? true])
                             ->except(['default', 'wire:key'])
                     }}
                 >

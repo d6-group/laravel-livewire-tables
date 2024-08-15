@@ -34,6 +34,7 @@ class ColorColumn extends Column
     {
         return view($this->getView())
             ->withIsTailwind($this->getComponent()->isTailwind())
+            ->withIsDaisyUI($this->getComponent()->isDaisyUI())
             ->withIsBootstrap($this->getComponent()->isBootstrap())
             ->withColor($this->getColor($row))
             ->withAttributeBag($this->getAttributeBag($row));

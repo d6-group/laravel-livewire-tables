@@ -53,13 +53,13 @@
     <div
         wire:key="{{ $tableName }}-twrap"
         {{ $attributes->merge($customAttributes['wrapper'])
-            ->class(['overflow-auto card shadow-xl' => $customAttributes['wrapper']['default'] ?? true])
+            ->class(['overflow-auto rounded-md shadow-md' => $customAttributes['wrapper']['default'] ?? true])
             ->except('default') }}
     >
         <table
             wire:key="{{ $tableName }}-table"
             {{ $attributes->merge($customAttributes['table'])
-                ->class(['table' => $customAttributes['table']['default'] ?? true])
+                ->class(['table table-zebra' => $customAttributes['table']['default'] ?? true])
                 ->except('default') }}
         >
             <thead wire:key="{{ $tableName }}-thead"

@@ -84,7 +84,7 @@
                 </div>
 
                 @if ($component->paginationIsEnabled())
-                    {{ $rows->links('livewire-tables::specific.tailwind.'.(!$component->isPaginationMethod('standard') ? 'simple-' : '').'pagination') }}
+                    {{ $rows->links('livewire-tables::specific.daisyui.'.(!$component->isPaginationMethod('standard') ? 'simple-' : '').'pagination') }}
                 @endif
             </div>
         @endif
