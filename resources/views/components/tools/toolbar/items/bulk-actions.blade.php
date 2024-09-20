@@ -16,7 +16,7 @@
             @class([
                 'btn dropdown-toggle d-block d-md-inline' => $component->isBootstrap(),
                 'inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $component->isTailwind(),
-                'inline-flex justify-center w-full btn btn-sm' => $component->isDaisyUI(),
+                'inline-flex justify-center w-full btn btn-ghost btn-sm input-bordered font-medium' => $component->isDaisyUI(),
             ])
             type="button"
             id="{{ $tableName }}-bulkActionsDropdown" 
@@ -78,9 +78,9 @@
                 x-transition:leave="transition ease-in duration-75"
                 x-transition:leave-start="transform opacity-100 scale-100"
                 x-transition:leave-end="transform opacity-0 scale-95"
-                class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50"
+                class="origin-top-right absolute right-0 mt-2 w-full md:w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-base-200 divide-y divide-base-200 focus:outline-none z-50"
             >
-                <div class="rounded-md bg-white shadow-xs dark:bg-gray-700 dark:text-white">
+                <div class="bg-base-100 rounded-md shadow-xs">
                     <div class="py-1" role="menu" aria-orientation="vertical">
                         @foreach ($component->getBulkActions() as $action => $title)
                             <button

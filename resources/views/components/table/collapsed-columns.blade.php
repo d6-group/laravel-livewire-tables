@@ -30,7 +30,8 @@
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
 
         @class([
-            'hidden bg-white dark:bg-gray-700 dark:text-white' => ($component->isTailwind() || $component->isDaisyUI()),
+            'hidden bg-white dark:bg-gray-700 dark:text-white' => $component->isTailwind(),
+            'hidden' => $component->isDaisyUI(),
             'd-none' => $component->isBootstrap()
         ])
     >
@@ -41,7 +42,10 @@
     ])
             colspan="{{ $colspan }}"
             >
-            <div>
+            <div 
+                @class([
+                    'grid gap-1' => ($component->isTailwind() || $component->isDaisyUI()),
+                ])>
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))

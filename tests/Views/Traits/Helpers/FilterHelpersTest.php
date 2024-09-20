@@ -419,7 +419,7 @@ class FilterHelpersTest extends TestCase
             'isBootstrap' => false,
             'isBootstrap4' => false,
             'isBootstrap5' => false,
-            'isDaisyUI' => true,
+            'isDaisyUI' => false,
         ];
 
         $filter1->setGenericDisplayData($testGenericData);

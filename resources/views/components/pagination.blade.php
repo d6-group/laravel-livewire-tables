@@ -53,7 +53,7 @@
             <div class="mt-4 px-4 md:p-0 sm:flex justify-between items-center space-y-4 sm:space-y-0">
                 <div>
                     @if ($component->paginationIsEnabled() && $component->isPaginationMethod('standard') && $rows->lastPage() > 1)
-                        <p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
+                        <p class="paged-pagination-results text-sm">
                             @if($component->showPaginationDetails())
                                 <span>@lang('Showing')</span>
                                 <span class="font-medium">{{ $rows->firstItem() }}</span>
@@ -65,7 +65,7 @@
                             @endif
                         </p>
                     @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('simple'))
-                        <p class="paged-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
+                        <p class="paged-pagination-results text-sm">
                             @if($component->showPaginationDetails())
                                 <span>@lang('Showing')</span>
                                 <span class="font-medium">{{ $rows->firstItem() }}</span>
@@ -75,7 +75,7 @@
                         </p>
                     @elseif ($component->paginationIsEnabled() && $component->isPaginationMethod('cursor'))
                     @else
-                        <p class="total-pagination-results text-sm text-gray-700 leading-5 dark:text-white">
+                        <p class="total-pagination-results text-sm">
                             @lang('Showing')
                             <span class="font-medium">{{ $rows->count() }}</span>
                             @lang('results')

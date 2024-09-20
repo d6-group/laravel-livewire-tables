@@ -88,20 +88,18 @@
         wire:key="{{ $tableName }}-column-select-button"
     >
         <div>
-            <span class="rounded-md shadow-sm">
-                <button
-                    x-on:click="open = !open"
-                    type="button"
-                    class="btn btn-sm"
-                    aria-haspopup="true"
-                    x-bind:aria-expanded="open"
-                    aria-expanded="true"
-                >
-                    @lang('Columns')
+            <button
+                x-on:click="open = !open"
+                type="button"
+                class="btn btn-sm btn-ghost input-bordered font-medium"
+                aria-haspopup="true"
+                x-bind:aria-expanded="open"
+                aria-expanded="true"
+            >
+                @lang('Columns')
 
-                    <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
-                </button>
-            </span>
+                <x-heroicon-m-chevron-down class="-mr-1 ml-2 h-5 w-5" />
+            </button>
         </div>
 
         <div
@@ -112,9 +110,9 @@
             x-transition:leave="transition ease-in duration-75"
             x-transition:leave-start="transform opacity-100 scale-100"
             x-transition:leave-end="transform opacity-0 scale-95"
-            class="absolute right-0 z-50 mt-2 w-full rounded-md divide-y divide-gray-100 ring-1 ring-black ring-opacity-5 shadow-lg origin-top-right md:w-48 focus:outline-none"
+            class="absolute right-0 z-50 mt-2 w-full rounded-md divide-y divide-base-200 ring-1 ring-base-200 shadow-lg origin-top-right md:w-48 focus:outline-none"
         >
-            <div class="bg-white rounded-md shadow-xs dark:bg-gray-700 dark:text-white">
+            <div class="bg-base-100 rounded-md shadow-xs">
                 <div class="p-2" role="menu" aria-orientation="vertical"
                         aria-labelledby="column-select-menu"
                 >

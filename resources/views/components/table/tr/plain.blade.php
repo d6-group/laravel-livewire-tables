@@ -14,7 +14,7 @@
 @elseif ($component->isDaisyUI())
     <tr {{ $attributes
             ->merge($customAttributes)
-            ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
+            ->class(['bg-base-100' => $customAttributes['default'] ?? true])
             ->class(['laravel-livewire-tables-reorderingMinimised'])
             ->except('default')
         }}

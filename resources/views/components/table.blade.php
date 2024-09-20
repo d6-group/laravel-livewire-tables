@@ -59,12 +59,12 @@
         <table
             wire:key="{{ $tableName }}-table"
             {{ $attributes->merge($customAttributes['table'])
-                ->class(['table table-zebra' => $customAttributes['table']['default'] ?? true])
+                ->class(['table' => $customAttributes['table']['default'] ?? true])
                 ->except('default') }}
         >
             <thead wire:key="{{ $tableName }}-thead"
                 {{ $attributes->merge($customAttributes['thead'])
-                    ->class(['bg-gray-50 dark:bg-gray-800' => $customAttributes['thead']['default'] ?? true])
+                    ->class(['bg-base-content/5' => $customAttributes['thead']['default'] ?? true])
                     ->except('default') }}
             >
                 <tr>
@@ -76,7 +76,7 @@
                 wire:key="{{ $tableName }}-tbody"
                 id="{{ $tableName }}-tbody"
                 {{ $attributes->merge($customAttributes['tbody'])
-                        ->class(['bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-none' => $customAttributes['tbody']['default'] ?? true])
+                        ->class(['' => $customAttributes['tbody']['default'] ?? true])
                         ->except('default') }}
             >
                 {{ $slot }}

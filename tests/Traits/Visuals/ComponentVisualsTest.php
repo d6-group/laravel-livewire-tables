@@ -145,12 +145,15 @@ class ComponentVisualsTest extends TestCase
         try {
             Livewire::test(BrokenSecondaryHeaderTable::class);
         } catch (DataTableConfigurationException $DataTableConfigurationException) {
+            dd($DataTableConfigurationException);
             $this->assertSame('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().', substr($DataTableConfigurationException->getMessage(), 0, 111));
             $this->testErrors = true;
         } catch (ViewException $ViewException) {
+            dd($ViewException);
             $this->assertSame('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().', substr($ViewException->getMessage(), 0, 111));
             $this->testErrors = true;
         } catch (Exception $standardException) {
+            dd($standardException);
             $this->assertSame('The secondary header callback must be a closure, filter object, or filter key if using secondaryHeaderFilter().', substr($standardException->getMessage(), 0, 111));
             $this->testErrors = true;
         }

@@ -4,7 +4,7 @@
     @class([
         'mb-3 mb-md-0 input-group' => $component->isBootstrap(),
         'flex rounded-md shadow-sm' => $component->isTailwind(),
-        'flex rounded-md shadow-sm' => $component->isDaisyUI(),
+        'flex relative' => $component->isDaisyUI(),
     ])>
         <input
             wire:model{{ $component->getSearchOptions() }}="search"
@@ -15,7 +15,7 @@
                 ->class([
                     'block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-none rounded-l-md focus:ring-0 focus:border-gray-300' => $component->isTailwind() && $component->hasSearch() && $component->getSearchFieldAttributes()['default'] ?? true,
                     'block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' => $component->isTailwind() && !$component->hasSearch() && $component->getSearchFieldAttributes()['default'] ?? true,
-                    'w-full input input-sm' => $component->isDaisyUI() && $component->hasSearch() && $component->getSearchFieldAttributes()['default'] ?? true,
+                    'w-full input input-sm input-bordered pr-9' => $component->isDaisyUI() && $component->hasSearch() && $component->getSearchFieldAttributes()['default'] ?? true,
                     'w-full input input-sm input-bordered text-base-content' => $component->isDaisyUI() && !$component->hasSearch() && $component->getSearchFieldAttributes()['default'] ?? true,
                     'form-control' => $component->isBootstrap() && $component->getSearchFieldAttributes()['default'] ?? true,
                 ])
@@ -25,16 +25,18 @@
         />
 
         @if ($component->hasSearch())
-        <div @class([
-                    'd-inline-flex h-100 align-items-center ' => $component->isBootstrap(),
-                ])>
+        <div 
+            @class([
+                'd-inline-flex h-100 align-items-center ' => $component->isBootstrap(),
+                'absolute top-0 right-0 h-full' => $component->isDaisyUI(),
+            ])>
                 <div
                     wire:click="clearSearch"
 
                     @class([
                             'btn btn-outline-secondary d-inline-flex h-100 align-items-center' => $component->isBootstrap(),
                             'inline-flex h-full items-center px-3 text-gray-500 bg-gray-50 rounded-r-md border border-l-0 border-gray-300 cursor-pointer sm:text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $component->isTailwind(),
-                            'inline-flex h-full items-center px-3 text-gray-500 bg-gray-50 rounded-r-md border border-l-0 border-gray-300 cursor-pointer sm:text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $component->isDaisyUI(),
+                            'inline-flex h-full items-center px-3 cursor-pointer sm:text-sm' => $component->isDaisyUI(),
                         ])
                 >
                 @if($component->isTailwind())

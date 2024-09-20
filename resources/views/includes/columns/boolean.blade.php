@@ -32,9 +32,9 @@
     @if ($status)
         @if ($type === 'icons')
             @if ($successValue === true)
-                <x-heroicon-o-check-circle class="inline-block h-5 w-5 text-green-500" />
+                <x-heroicon-o-check-circle class="inline-block h-5 w-5 text-success" />
             @else
-                <x-heroicon-o-check-circle class="inline-block h-5 w-5 text-red-500" />
+                <x-heroicon-o-check-circle class="inline-block h-5 w-5 text-error" />
             @endif
         @elseif ($type === 'yes-no')
             @if ($successValue === true)

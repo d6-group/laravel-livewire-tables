@@ -49,7 +49,10 @@
         x-transition:leave="transition ease-in duration-75"
         x-transition:leave-start="transform opacity-100 scale-100"
         x-transition:leave-end="transform opacity-0 scale-95"
-        class="origin-top-left absolute left-0 mt-2 w-full md:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50 dark:bg-gray-700 dark:text-white dark:divide-gray-600"
+        @class([
+            'origin-top-left absolute left-0 mt-2 w-full md:w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none z-50 dark:bg-gray-700 dark:text-white dark:divide-gray-600' => $component->isTailwind(),
+            'origin-top-left absolute left-0 mt-2 w-full md:w-56 rounded-md shadow-lg bg-base-100 ring-1 ring-base-200 divide-y divide-base-200 z-50 text-base max-h-[50vh] overflow-y-scroll' => $component->isDaisyUI(),
+        ])
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="filters-menu"
@@ -57,7 +60,7 @@
         @foreach ($component->getVisibleFilters() as $filter)
             <div class="py-1" role="none">
                 <div
-                    class="block px-4 py-2 text-sm text-gray-700 space-y-1"
+                    class="block px-4 py-2 text-sm space-y-1"
                     role="menuitem"
                     id="{{ $tableName }}-filter-{{ $filter->getKey() }}-wrapper"
                 >
@@ -67,12 +70,15 @@
         @endforeach
 
         @if ($component->hasAppliedVisibleFiltersWithValuesThatCanBeCleared())
-            <div class="block px-4 py-3 text-sm text-gray-700 dark:text-white" role="menuitem">
+            <div class="block px-4 py-3 text-sm" role="menuitem">
                 <button
                     x-on:click="filterPopoverOpen = false"
                     wire:click.prevent="setFilterDefaults"
                     type="button"
-                    class="w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                    @class([
+                        'w-full inline-flex items-center justify-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-800 dark:border-gray-600 dark:text-white dark:hover:border-gray-500 dark:hover:bg-gray-600' => $component->isTailwind(),
+                        'btn btn-xs btn-ghost' => $component->isDaisyUI(),
+                    ])
                 >
                     @lang('Clear')
                 </button>
