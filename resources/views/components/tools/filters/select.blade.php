@@ -6,8 +6,7 @@
         'rounded-md shadow-sm' => $isDaisyUI,
         'inline' => $isBootstrap,
     ])>
-        <select
-            wire:model.live="filterComponents.{{ $filter->getKey() }}"
+        <select {{ $filter->getWireMethod("filterComponents.".$filter->getKey()) }}
             wire:key="{{ $filter->generateWireKey($tableName, 'select') }}"
             id="{{ $tableName }}-filter-{{ $filter->getKey() }}@if($filter->hasCustomPosition())-{{ $filter->getCustomPosition() }}@endif"
             @class([

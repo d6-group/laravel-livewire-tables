@@ -3,16 +3,23 @@
 namespace Rappasoft\LaravelLivewireTables\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Console\PromptsForMissingInput;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Livewire\Features\SupportConsoleCommands\Commands\ComponentParser;
 use Livewire\Features\SupportConsoleCommands\Commands\MakeCommand as LivewireMakeCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Finder\Finder;
+
+use function Laravel\Prompts\suggest;
+use function Laravel\Prompts\text;
 
 /**
  * Class MakeCommand
  */
-class MakeCommand extends Command
+class MakeCommand extends Command implements PromptsForMissingInput
 {
     protected ComponentParser $parser;
 
@@ -120,15 +127,58 @@ class MakeCommand extends Command
         }
 
         if (isset($this->modelPath)) {
-            if (File::exists(rtrim($this->modelPath, '/').'/'.$this->model.'.php')) {
-
-                return Str::studly(str_replace('/', '\\', $this->modelPath)).$this->model;
+            $filename = rtrim($this->modelPath, '/').'/'.$this->model.'.php';
+            if (File::exists($filename)) {
+                //In case the file has more than one class which is highly unlikely but still possible
+                $classes = array_filter($this->getClassesList($filename), function ($class) {
+                    return substr($class, strrpos($class, '\\') + 1) == $this->model;
+                });
+                if (count($classes) == 1) {
+                    return $classes[0];
+                }
             }
         }
 
         $this->error('Could not find path to model.');
 
         return 'App\Models\\'.$this->model;
+    }
+
+    /*
+    * Credits to Harm Smits: https://stackoverflow.com/a/67099502/2263114
+    */
+    private function getClassesList($file): array
+    {
+        $classes = [];
+        $namespace = '';
+        $tokens = \PhpToken::tokenize(file_get_contents($file));
+
+        for ($i = 0; $i < count($tokens); $i++) {
+            if ($tokens[$i]->getTokenName() === 'T_NAMESPACE') {
+                for ($j = $i + 1; $j < count($tokens); $j++) {
+                    if ($tokens[$j]->getTokenName() === 'T_NAME_QUALIFIED') {
+                        $namespace = $tokens[$j]->text;
+                        break;
+                    }
+                }
+            }
+
+            if ($tokens[$i]->getTokenName() === 'T_CLASS') {
+                for ($j = $i + 1; $j < count($tokens); $j++) {
+                    if ($tokens[$j]->getTokenName() === 'T_WHITESPACE') {
+                        continue;
+                    }
+
+                    if ($tokens[$j]->getTokenName() === 'T_STRING') {
+                        $classes[] = $namespace.'\\'.$tokens[$j]->text;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+
+        return $classes;
     }
 
     /**
@@ -163,5 +213,53 @@ class MakeCommand extends Command
         $columns .= '        ]';
 
         return $columns;
+    }
+
+    protected function possibleModels()
+    {
+        $modelPath = is_dir(app_path('Models')) ? app_path('Models') : app_path();
+
+        return collect(Finder::create()->files()->depth(0)->in($modelPath))
+            ->map(fn ($file) => $file->getBasename('.php'))
+            ->sort()
+            ->values()
+            ->all();
+    }
+
+    protected function promptForMissingArguments(InputInterface $input, OutputInterface $output)
+    {
+
+        if ($this->didReceiveOptions($input)) {
+            return;
+        }
+
+        if (trim($this->argument('name')) === '') {
+            $name = text('What is the name of your Livewire class?', 'TestTable');
+
+            if ($name) {
+                $input->setArgument('name', $name);
+            }
+        }
+
+        if (trim($this->argument('model')) === '') {
+            $model = suggest(
+                'What is the name of the model you want to use in this table?',
+                $this->possibleModels(),
+                'Test'
+            );
+
+            if ($model) {
+                $input->setArgument('model', $model);
+            }
+        }
+
+        if (trim($this->argument('modelpath')) === '' && ! in_array($this->argument('model'), $this->possibleModels())) {
+
+            $modelPath = text('What is the path to the model you want to use in this table?', 'app/TestModels/');
+
+            if ($modelPath) {
+                $input->setArgument('modelpath', $modelPath);
+            }
+        }
     }
 }
