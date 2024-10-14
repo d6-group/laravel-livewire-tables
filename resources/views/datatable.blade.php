@@ -1,13 +1,14 @@
 @php($tableName = $this->getTableName)
 @php($tableId = $this->getTableId)
 @php($primaryKey = $this->getPrimaryKey)
+@php($isDaisyUI = $this->isDaisyUI)
 @php($isTailwind = $this->isTailwind)
 @php($isBootstrap = $this->isBootstrap)
 @php($isBootstrap4 = $this->isBootstrap4)
 @php($isBootstrap5 = $this->isBootstrap5)
 
 <div x-data="laravellivewiretable($wire, '{{ $this->showBulkActionsDropdownAlpine() }}', '{{ $tableId }}', '{{ $primaryKey }}')">
-    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isBootstrap :$isBootstrap4 :$isBootstrap5>
+    <x-livewire-tables::wrapper :component="$this" :tableName="$tableName" :$primaryKey :$isTailwind :$isDaisyUI :$isBootstrap :$isBootstrap4 :$isBootstrap5>
         @if(method_exists($this,'hasActions') && $this->hasActions())
             <x-livewire-tables::includes.actions/>    
         @endif

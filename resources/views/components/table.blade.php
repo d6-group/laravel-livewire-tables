@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
+@aware(['component', 'tableName','isTailwind', 'isDaisyUI','isBootstrap'])
 
 @php
     $customAttributes = [
@@ -37,6 +37,46 @@
                 id="{{ $tableName }}-tbody"
                 {{ $attributes->merge($customAttributes['tbody'])
                         ->class(['bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-none' => $customAttributes['tbody']['default'] ?? true])
+                        ->except('default') }}
+            >
+                {{ $slot }}
+            </tbody>
+
+            @if (isset($tfoot))
+                <tfoot wire:key="{{ $tableName }}-tfoot">
+                    {{ $tfoot }}
+                </tfoot>
+            @endif
+        </table>
+    </div>
+@elseif ($isDaisyUI)
+    <div
+        wire:key="{{ $tableName }}-twrap"
+        {{ $attributes->merge($customAttributes['wrapper'])
+            ->class(['overflow-auto rounded-md shadow-md' => $customAttributes['wrapper']['default'] ?? true])
+            ->except('default') }}
+    >
+        <table
+            wire:key="{{ $tableName }}-table"
+            {{ $attributes->merge($customAttributes['table'])
+                ->class(['table' => $customAttributes['table']['default'] ?? true])
+                ->except('default') }}
+        >
+            <thead wire:key="{{ $tableName }}-thead"
+                {{ $attributes->merge($customAttributes['thead'])
+                    ->class(['bg-base-content/5' => $customAttributes['thead']['default'] ?? true])
+                    ->except('default') }}
+            >
+                <tr>
+                    {{ $thead }}
+                </tr>
+            </thead>
+
+            <tbody
+                wire:key="{{ $tableName }}-tbody"
+                id="{{ $tableName }}-tbody"
+                {{ $attributes->merge($customAttributes['tbody'])
+                        ->class(['' => $customAttributes['tbody']['default'] ?? true])
                         ->except('default') }}
             >
                 {{ $slot }}

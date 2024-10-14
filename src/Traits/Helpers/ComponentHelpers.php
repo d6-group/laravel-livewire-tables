@@ -76,6 +76,12 @@ trait ComponentHelpers
     {
         return $this->getTheme() === 'tailwind';
     }
+   
+    #[Computed]
+    public function isDaisyUI(): bool
+    {
+        return $this->getTheme() === 'daisyui';
+    }
 
     #[Computed]
     public function isBootstrap(): bool

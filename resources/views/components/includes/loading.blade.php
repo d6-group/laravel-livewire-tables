@@ -1,4 +1,4 @@
-@aware(['isTailwind', 'isBootstrap', 'tableName', 'component'])
+@aware(['isTailwind', 'isDaisyUI' 'isBootstrap', 'tableName', 'component'])
 @props(['colCount' => 1])
 
 @php
@@ -12,7 +12,7 @@ $customAttributes['loader-icon'] = $this->getLoadingPlaceHolderIconAttributes();
     <tr wire:key="{{ $tableName }}-loader" class="hidden d-none"
     {{
         $attributes->merge($customAttributes['loader-wrapper'])
-            ->class(['w-full text-center h-screen place-items-center align-middle' => $isTailwind && ($customAttributes['loader-wrapper']['default'] ?? true)])
+            ->class(['w-full text-center h-screen place-items-center align-middle' => ($isTailwind || $isDaisyUI) && ($customAttributes['loader-wrapper']['default'] ?? true)])
             ->class(['w-100 text-center h-100 align-items-center' => $isBootstrap && ($customAttributes['loader-wrapper']['default'] ?? true)]);
     }}
     wire:loading.class.remove="hidden d-none"
@@ -22,7 +22,7 @@ $customAttributes['loader-icon'] = $this->getLoadingPlaceHolderIconAttributes();
                 <div class="lds-hourglass"
                 {{
                         $attributes->merge($customAttributes['loader-icon'])
-                            ->class(['lds-hourglass' => $isTailwind && ($customAttributes['loader-icon']['default'] ?? true)])
+                            ->class(['lds-hourglass' => ($isTailwind || $isDaisyUI) && ($customAttributes['loader-icon']['default'] ?? true)])
                             ->class(['lds-hourglass' => $isBootstrap && ($customAttributes['loader-icon']['default'] ?? true)])
                             ->except('default');
                 }}

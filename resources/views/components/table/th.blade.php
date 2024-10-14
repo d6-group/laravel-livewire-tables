@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
+@aware(['component', 'tableName','isTailwind','isDaisyUI','isBootstrap'])
 @props(['column', 'index'])
 
 @php
@@ -38,6 +38,45 @@
             ->class(['hidden lg:table-cell' => $column->shouldCollapseOnTablet()])
             ->except('default')
         }}>{{ $column->getTitle() }}</span>
+
+                    <span class="relative flex items-center">
+                        @if ($direction === 'asc')
+                            <x-heroicon-o-chevron-up class="w-3 h-3 group-hover:opacity-0" />
+                            <x-heroicon-o-chevron-down class="w-3 h-3 opacity-0 group-hover:opacity-100 absolute"/>
+                        @elseif ($direction === 'desc')
+                            <x-heroicon-o-chevron-down class="w-3 h-3 group-hover:opacity-0" />
+                            <x-heroicon-o-x-circle class="w-3 h-3 opacity-0 group-hover:opacity-100 absolute"/>
+                        @else
+                            <x-heroicon-o-chevron-up class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        @endif
+                    </span>
+                </button>
+            @endunless
+        @endif
+    </th>
+@elseif ($isDaisyUI)
+    <th scope="col" {{
+        $attributes->merge($customAttributes)
+            ->class(['px-6 py-3 text-left font-bold whitespace-nowrap uppercase tracking-wider' => $customAttributes['default'] ?? true])
+            ->class(['hidden' => $column->shouldCollapseAlways()])
+            ->class(['hidden md:table-cell' => $column->shouldCollapseOnMobile()])
+            ->class(['hidden lg:table-cell' => $column->shouldCollapseOnTablet()])
+            ->except('default')
+        }}
+    >
+        @if($column->getColumnLabelStatus())
+            @unless ($this->sortingIsEnabled() && ($column->isSortable() || $column->getSortCallback()))
+                {{ $column->getTitle() }}
+            @else
+                <button
+                    wire:click="sortBy('{{ ($column->isSortable() ? $column->getColumnSelectName() : $column->getSlug()) }}')"
+                    {{
+                        $attributes->merge($customSortButtonAttributes)
+                            ->class(['flex items-center space-x-1 text-left leading-4 font-bold uppercase tracking-wider' => $customSortButtonAttributes['default'] ?? true])
+                            ->except(['default', 'wire:key'])
+                    }}
+                >
+                    <span>{{ $column->getTitle() }}</span>
 
                     <span class="relative flex items-center">
                         @if ($direction === 'asc')

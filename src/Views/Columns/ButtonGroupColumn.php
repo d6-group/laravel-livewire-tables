@@ -29,6 +29,7 @@ class ButtonGroupColumn extends Column
             ->withColumn($this)
             ->withRow($row)
             ->withIsTailwind($this->isTailwind())
+            ->withIsDaisyUI($this->isDaisyUI())
             ->withIsBootstrap($this->isBootstrap())
             ->withButtons($this->getButtons())
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);

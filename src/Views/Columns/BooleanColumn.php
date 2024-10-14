@@ -31,6 +31,7 @@ class BooleanColumn extends Column
 
         return view($this->getView())
             ->withIsTailwind($this->isTailwind())
+            ->withIsDaisyUI($this->isDaisyUI())
             ->withIsBootstrap($this->isBootstrap())
             ->withSuccessValue($this->getSuccessValue())
             ->withType($this->getType())

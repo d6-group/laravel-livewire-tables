@@ -39,6 +39,7 @@ class WireLinkColumn extends Column
         return view($this->getView())
             ->withColumn($this)
             ->withIsTailwind($this->isTailwind())
+            ->withIsDaisyUI($this->isDaisyUI())
             ->withIsBootstrap($this->isBootstrap())
             ->withTitle(app()->call($this->getTitleCallback(), ['row' => $row]))
             ->withPath(app()->call($this->getActionCallback(), ['row' => $row]))

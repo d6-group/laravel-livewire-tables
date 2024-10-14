@@ -384,6 +384,7 @@ final class FilterHelpersTest extends TestCase
             'filterLayout' => 'tailwind',
             'tableName' => 'test123',
             'isTailwind' => true,
+            'isDaisyUI' => false,
             'isBootstrap' => false,
             'isBootstrap4' => false,
             'isBootstrap5' => false,
@@ -394,6 +395,7 @@ final class FilterHelpersTest extends TestCase
         $this->assertSame($testGenericData['filterLayout'], $filter1->getFilterDisplayData()['filterLayout']);
         $this->assertSame($testGenericData['tableName'], $filter1->getFilterDisplayData()['tableName']);
         $this->assertSame($testGenericData['isTailwind'], $filter1->getFilterDisplayData()['isTailwind']);
+        $this->assertSame($testGenericData['isDaisyUI'], $filter1->getFilterDisplayData()['isDaisyUI']);
         $this->assertSame($testGenericData['isBootstrap'], $filter1->getFilterDisplayData()['isBootstrap']);
         $this->assertSame($testGenericData['isBootstrap4'], $filter1->getFilterDisplayData()['isBootstrap4']);
         $this->assertSame($testGenericData['isBootstrap5'], $filter1->getFilterDisplayData()['isBootstrap5']);

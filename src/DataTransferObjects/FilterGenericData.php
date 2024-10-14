@@ -9,16 +9,19 @@ class FilterGenericData
     public string $filterLayout;
 
     public bool $isTailwind = false;
+    
+    public bool $isDaisyUI = false;
 
     public bool $isBootstrap4 = false;
 
     public bool $isBootstrap5 = false;
 
-    public function __construct(string $tableName, string $filterLayout, bool $isTailwind = false, bool $isBootstrap4 = false, bool $isBootstrap5 = false)
+    public function __construct(string $tableName, string $filterLayout, bool $isTailwind = false, bool $isDaisyUI = false, bool $isBootstrap4 = false, bool $isBootstrap5 = false)
     {
         $this->tableName = $tableName;
         $this->filterLayout = $filterLayout;
         $this->isTailwind = $isTailwind;
+        $this->isDaisyUI = $isDaisyUI;
         $this->isBootstrap4 = $isBootstrap4;
         $this->isBootstrap5 = $isBootstrap5;
     }
@@ -29,6 +32,7 @@ class FilterGenericData
             'tableName' => $this->tableName,
             'filterLayout' => $this->filterLayout,
             'isTailwind' => $this->isTailwind,
+            'isDaisyUI' => $this->isDaisyUI,
             'isBootstrap' => ($this->isBootstrap4 || $this->isBootstrap5),
             'isBootstrap4' => $this->isBootstrap4,
             'isBootstrap5' => $this->isBootstrap5,

@@ -37,6 +37,7 @@ class Action extends Component
             ->withAction($this)
             ->withIsBootstrap($this->isBootstrap())
             ->withIsTailwind($this->isTailwind())
+            ->withIsDaisyUI($this->isDaisyUI())
             ->withAttributes($this->getActionAttributes());
 
         return $view;

@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware(['component', 'tableName','isTailwind','isDaisyUI','isBootstrap','isBootstrap4','isBootstrap5'])
 @props([])
 
 <div 
@@ -16,7 +16,7 @@
         @endif
         @class([
             'btn-group d-block d-md-inline' => $this->isBootstrap,
-            'relative block md:inline-block text-left' => $this->isTailwind,
+            'relative block md:inline-block text-left' => $this->isTailwind || $this->isDaisyUI,
         ])
     >
         <div>
@@ -25,6 +25,7 @@
                 @class([
                     'btn dropdown-toggle d-block w-100 d-md-inline' => $this->isBootstrap,
                     'inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $this->isTailwind,
+                    'inline-flex justify-center w-full btn btn-sm' => $this->isDaisyUI,
                 ])
                 @if ($this->isFilterLayoutPopover()) x-on:click="filterPopoverOpen = !filterPopoverOpen"
                     aria-haspopup="true"
@@ -39,12 +40,13 @@
                     <span @class([
                             'badge badge-info' => $this->isBootstrap,
                             'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $this->isTailwind,
+                            'ml-1 badge' => $this->isDaisyUI,
                         ])>
                         {{ $count }}
                     </span>
                 @endif
 
-                @if($this->isTailwind)
+                @if($this->isTailwind || $this->isDaisyUI)
                     <x-heroicon-o-funnel class="-mr-1 ml-2 h-5 w-5" />
                 @else
                 <span @class([

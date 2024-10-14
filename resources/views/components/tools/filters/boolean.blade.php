@@ -2,7 +2,7 @@
 <div class="flex flex-cols" 
     x-data="booleanFilter($wire,'{{ $filter->getKey() }}', '{{ $tableName }}', '{{ $defaultValue }}')"
 >   
-    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
+    <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isDaisyUI :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
     <input id="thisId" type="checkbox" name="switch" class="hidden" :checked="switchOn" >
     
     <button id="{{ $tableName }}-filter-{{ $filter->getKey() }}"

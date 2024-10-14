@@ -336,6 +336,7 @@ You will receive several properties to your blade, explained here:
 - $filter (the filter instance)
 - $filterLayout ('slide-down' or 'popover')
 - $tableName (the table name)
+- $isDaisyUI (bool - is theme DaisyUI)
 - $isTailwind (bool - is theme Tailwind)
 - $isBootstrap (bool - is theme Bootstrap 4 or Bootstrap 5)
 - $isBootstrap4 (bool - is theme Bootstrap 4)
@@ -344,7 +345,7 @@ You will receive several properties to your blade, explained here:
 
 Example label blade:
 ```php
-@props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table', 'isTailwind' => false, 'isBootstrap' => false, 'isBootstrap4' => false, 'isBootstrap5' => false, 'customLabelAttributes' => [])
+@props(['filter', 'filterLayout' => 'popover', 'tableName' => 'table', 'isTailwind' => false, 'isDaisyUI' => false, 'isBootstrap' => false, 'isBootstrap4' => false, 'isBootstrap5' => false, 'customLabelAttributes' => [])
 
 
 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}"
@@ -352,6 +353,7 @@ Example label blade:
     {{
         $attributes->merge($customLabelAttributes)
             ->class(['block text-sm font-medium leading-5 text-gray-700 dark:text-white' => $isTailwind && $customLabelAttributes['default'] ?? true])
+            ->class(['block text-sm font-medium leading-5' => $isDaisyUI && $customLabelAttributes['default'] ?? true])
             ->class(['d-block' => $isBootstrap && $filterLayout == 'slide-down' && $customLabelAttributes['default'] ?? true])
             ->class(['mb-2' => $isBootstrap && $filterLayout == 'popover' && $customLabelAttributes['default'] ?? true])
             ->except('default')

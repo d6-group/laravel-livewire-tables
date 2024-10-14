@@ -10,6 +10,7 @@
         fill="none" stroke="currentColor"
         viewBox="0 0 24 24"
         @class([
+            'w-4 h-4' => $theme === 'daisyui',
             'inline w-4 h-4' => $theme === 'tailwind',
             'd-inline' => $theme === 'bootstrap-4' || $theme === 'bootstrap-5',
         ])

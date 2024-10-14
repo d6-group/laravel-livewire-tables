@@ -13,6 +13,11 @@ trait HasTheme
         return $this;
     }
 
+    public function isDaisyUI(): bool
+    {
+        return $this->theme == 'daisyui';
+    }
+    
     public function isTailwind(): bool
     {
         return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';

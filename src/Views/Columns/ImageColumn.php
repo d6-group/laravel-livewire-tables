@@ -33,6 +33,7 @@ class ImageColumn extends Column
         return view($this->getView())
             ->withColumn($this)
             ->withIsTailwind($this->isTailwind())
+            ->withIsDaisyUI($this->isDaisyUI())
             ->withIsBootstrap($this->isBootstrap())
             ->withPath(app()->call($this->getLocationCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);

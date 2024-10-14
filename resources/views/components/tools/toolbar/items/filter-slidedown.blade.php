@@ -12,13 +12,20 @@
     x-transition:leave="transition ease-in duration-75"
     x-transition:leave-start="transform opacity-100"
     x-transition:leave-end="transform opacity-0"
+    @elseif($this->isDaisyUI)
+    x-transition:enter="transition ease-out duration-100"
+    x-transition:enter-start="transform opacity-0"
+    x-transition:enter-end="transform opacity-100"
+    x-transition:leave="transition ease-in duration-75"
+    x-transition:leave-start="transform opacity-100"
+    x-transition:leave-end="transform opacity-0"
     @endif
 >
     @foreach ($this->getFiltersByRow() as $filterRowIndex => $filterRow)
         <div
             @class([
                 'row col-12' => $this->isBootstrap,
-                'grid grid-cols-12 gap-6 px-4 md:p-0 mb-6' => $this->isTailwind,
+                'grid grid-cols-12 gap-6 px-4 md:p-0 mb-6' => ($this->isTailwind || $this->isDaisyUI),
             ])
             row="{{ $filterRowIndex }}"
         >
@@ -43,16 +50,16 @@
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() == 4,
                         'space-y-1 col-span-12' => 
-                            $this->isTailwind,
+                            ($this->isTailwind || $this->isDaisyUI),
                         'sm:col-span-6 md:col-span-4 lg:col-span-2' => 
-                            $this->isTailwind && 
+                            ($this->isTailwind || $this->isDaisyUI) && 
                             !$filter->hasFilterSlidedownColspan(),
                         'sm:col-span-12 md:col-span-8 lg:col-span-4' =>
-                            $this->isTailwind &&
+                            ($this->isTailwind || $this->isDaisyUI) &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() == 2,
                         'sm:col-span-9 md:col-span-4 lg:col-span-3' =>
-                            $this->isTailwind &&
+                            ($this->isTailwind || $this->isDaisyUI) &&
                             $filter->hasFilterSlidedownColspan() &&
                             $filter->getFilterSlidedownColspan() == 3,
                     ])

@@ -11,6 +11,7 @@
     <x-livewire-tables::table.td.plain wire:key="{{ $tableName }}-tbody-td-bulk-actions-td-{{ $row->{$primaryKey} }}" :displayMinimisedOnReorder="true"  :$customAttributes>
         <div @class([
             'inline-flex rounded-md shadow-sm' => $theme === 'tailwind',
+            'inline-flex' => $theme === 'daisyui',
             'form-check' => $theme === 'bootstrap-5',
         ])>
             <input

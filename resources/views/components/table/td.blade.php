@@ -1,4 +1,4 @@
-@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware(['component', 'row', 'rowIndex', 'tableName', 'primaryKey','isTailwind', 'isDaisyUI','isBootstrap'])
 @props(['column', 'colIndex'])
 
 @php
@@ -14,9 +14,10 @@
         {{
             $attributes->merge($customAttributes)
                 ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customAttributes['default'] ?? true)])
-                ->class(['hidden' =>  $isTailwind && $column && $column->shouldCollapseAlways()])
-                ->class(['hidden md:table-cell' => $isTailwind && $column && $column->shouldCollapseOnMobile()])
-                ->class(['hidden lg:table-cell' => $isTailwind && $column && $column->shouldCollapseOnTablet()])
+                ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium' => $isDaisyUI && ($customAttributes['default'] ?? true)])
+                ->class(['hidden' =>  ($isTailwind || $isDaisyUI) && $column && $column->shouldCollapseAlways()])
+                ->class(['hidden md:table-cell' => ($isTailwind || $isDaisyUI) && $column && $column->shouldCollapseOnMobile()])
+                ->class(['hidden lg:table-cell' => ($isTailwind || $isDaisyUI) && $column && $column->shouldCollapseOnTablet()])
                 ->class(['' => $isBootstrap && ($customAttributes['default'] ?? true)])
                 ->class(['d-none' => $isBootstrap && $column && $column->shouldCollapseAlways()])
                 ->class(['d-none d-md-table-cell' => $isBootstrap && $column && $column->shouldCollapseOnMobile()])
