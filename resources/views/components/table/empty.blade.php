@@ -10,7 +10,7 @@
             </div>
         </td>
     </tr>
-@if ($isDaisyUI)
+@elseif ($isDaisyUI)
     <tr {{ $attributes }}>
         <td colspan="{{ $this->getColspanCount() }}">
             <div class="flex justify-center items-center space-x-2 bg-base-content">
