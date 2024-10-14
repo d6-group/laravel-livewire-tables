@@ -13,6 +13,18 @@
             }}
             :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
         ></th>
+    @elseif ($isDaisyUI)
+        <th
+            scope="col"
+            {{
+                $attributes
+                    ->merge(['class' => 'table-cell laravel-livewire-tables-reorderingMinimised'])
+                    ->class(['sm:hidden' => !$this->shouldCollapseOnTablet() && !$this->shouldCollapseAlways()])
+                    ->class(['md:hidden' => !$this->shouldCollapseOnMobile() && !$this->shouldCollapseOnTablet() && !$this->shouldCollapseAlways()])
+                    ->class(['lg:hidden' => !$this->shouldCollapseAlways()])
+            }}
+            :class="{ 'laravel-livewire-tables-reorderingMinimised': ! currentlyReorderingStatus }"
+        ></th>
     @elseif ($isBootstrap)
         <th
             scope="col"

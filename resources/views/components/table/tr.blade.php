@@ -25,6 +25,8 @@
                 ->class(['bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
                 ->class(['bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
                 ->class(['cursor-pointer' => (($isTailwind || $isDaisyUI) && $this->hasTableRowUrl() && ($customAttributes['default'] ?? true))])
+                ->class(['bg-base-100 rappasoft-striped-row' => ($isDaisyUI && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
+                ->class(['bg-base-content/5 rappasoft-striped-row' => ($isDaisyUI && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
                 ->class(['bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
                 ->class(['bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
                 ->except(['default'])

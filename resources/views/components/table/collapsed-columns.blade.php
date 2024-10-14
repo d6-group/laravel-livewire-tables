@@ -36,6 +36,7 @@
         $attributes->merge($customAttributes)
                 ->class(['hidden bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
                 ->class(['hidden bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
+                ->class(['hidden' => $isDaisyUI])
                 ->class(['d-none bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
                 ->class(['d-none bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
                 ->except(['default'])
@@ -49,7 +50,10 @@
     ])
             colspan="{{ $colspan }}"
             >
-            <div>
+            <div 
+                @class([
+                    'grid gap-1' => ($component->isTailwind() || $component->isDaisyUI()),
+                ])>
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))

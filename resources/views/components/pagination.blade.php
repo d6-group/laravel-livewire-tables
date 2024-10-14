@@ -63,15 +63,6 @@
                                 <span>@lang('results')</span>
                             @endif
                         </p>
-                    @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('simple'))
-                        <p class="paged-pagination-results text-sm">
-                            @if($this->showPaginationDetails())
-                                <span>@lang('Showing')</span>
-                                <span class="font-medium">{{ $this->getRows->firstItem() }}</span>
-                                <span>@lang('to')</span>
-                                <span class="font-medium">{{ $this->getRows->lastItem() }}</span>
-                            @endif
-                        </p>
                     @elseif ($this->paginationIsEnabled() && $this->isPaginationMethod('cursor'))
                     @else
                         <p class="total-pagination-results text-sm">

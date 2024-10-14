@@ -1,10 +1,21 @@
-@aware(['component', 'rowIndex', 'rowID','isTailwind','isBootstrap'])
+@aware(['component', 'rowIndex', 'rowID','isTailwind','isDaisyUI','isBootstrap'])
 @props(['column' => null, 'customAttributes' => [], 'displayMinimisedOnReorder' => false, 'hideUntilReorder' => false])
 
 @if ($isTailwind)
     <td x-cloak {{ $attributes
         ->merge($customAttributes)
         ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $customAttributes['default'] ?? true])
+        ->class(['hidden' => $column && $column->shouldCollapseAlways()])
+        ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnMobile()])
+        ->class(['hidden lg:table-cell' => $column && $column->shouldCollapseOnTablet()])
+        ->except('default')
+    }} @if($hideUntilReorder) x-show="reorderDisplayColumn" @endif >
+        {{ $slot }}
+    </td>
+@elseif ($isDaisyUI)
+    <td x-cloak {{ $attributes
+        ->merge($customAttributes)
+        ->class(['px-6 py-4 whitespace-nowrap text-sm font-medium' => $customAttributes['default'] ?? true])
         ->class(['hidden' => $column && $column->shouldCollapseAlways()])
         ->class(['hidden md:table-cell' => $column && $column->shouldCollapseOnMobile()])
         ->class(['hidden lg:table-cell' => $column && $column->shouldCollapseOnTablet()])
