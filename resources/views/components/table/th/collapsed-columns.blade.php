@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap'])
+@aware(['component', 'tableName','isTailwind','isDaisyUI','isBootstrap'])
 
 @if ($this->collapsingColumnsAreEnabled() && $this->hasCollapsedColumns())
     @if ($isTailwind)
