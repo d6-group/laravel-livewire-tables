@@ -9,7 +9,7 @@ class FilterGenericData
     public string $filterLayout;
 
     public bool $isTailwind = false;
-    
+
     public bool $isDaisyUI = false;
 
     public bool $isBootstrap4 = false;

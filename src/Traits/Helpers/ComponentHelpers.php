@@ -76,7 +76,7 @@ trait ComponentHelpers
     {
         return $this->getTheme() === 'tailwind';
     }
-   
+
     #[Computed]
     public function isDaisyUI(): bool
     {
