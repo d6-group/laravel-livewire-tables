@@ -1,6 +1,6 @@
 @props(['direction' => 'none', 'customIconAttributes'])
 <span @class([
-        'relative flex items-center' => $this->isTailwind,
+        'relative flex items-center' => ($this->isTailwind || $this->isDaisyUI),
         'relative d-flex align-items-center' => $this->isBootstrap
     ])
 >

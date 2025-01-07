@@ -28,13 +28,13 @@ trait HasTheme
     #[Computed]
     public function isDaisyUI(): bool
     {
-        return $this->theme == 'daisyui';
+        return $this->getTheme() === 'daisyui';
     }
 
     #[Computed]
     public function isTailwind(): bool
     {
-        return ! $this->isBootstrap4() && ! $this->isBootstrap5();
+        return ! $this->isBootstrap4() && ! $this->isBootstrap5() && ! $this->isDaisyUI();
     }
 
     #[Computed]

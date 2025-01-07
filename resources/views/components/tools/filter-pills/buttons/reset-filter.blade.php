@@ -12,7 +12,7 @@
         <span class="sr-only">{{ __($this->getLocalisationPath.'Remove filter option') }}</span>
         <x-heroicon-m-x-mark class="h-full" />
     </button>
-@if ($isDaisyUI)
+@elseif ($isDaisyUI)
     <button
         wire:click="resetFilter('{{ $filterKey }}')"
         type="button"

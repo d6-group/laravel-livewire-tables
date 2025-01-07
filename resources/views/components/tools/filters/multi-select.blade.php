@@ -1,10 +1,15 @@
-<div>
+<div @class([
+    'grid gap-1' => $isDaisyUI
+    ])>
     <x-livewire-tables::tools.filter-label :$filter :$filterLayout :$tableName :$isTailwind :$isDaisyUI :$isBootstrap4 :$isBootstrap5 :$isBootstrap />
 
     @if ($isTailwind)
     <div class="rounded-md shadow-sm">
     @endif
-        <div @class(['form-check' => $isBootstrap])>
+        <div @class([
+            'form-check' => $isBootstrap, 
+            'inline-flex gap-2 items-center w-full' => $isDaisyUI
+            ])>
             <input id="{{ $tableName }}-filter-{{ $filter->getKey() }}-select-all{{ $filter->hasCustomPosition() ? '-'.$filter->getCustomPosition() : null }}" wire:input="selectAllFilterOptions('{{ $filter->getKey() }}')" {{ 
                     $filterInputAttributes->merge([
                         'type' => 'checkbox'
@@ -20,7 +25,7 @@
                 }}>
             <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}-select-all{{ $filter->hasCustomPosition() ? '-'.$filter->getCustomPosition() : null }}" @class([
                 'dark:text-white' => $isTailwind,
-                'label' => $isDaisyUI,
+                'text-base-content' => $isDaisyUI,
                 'form-check-label' => $isBootstrap,
                 ])>
                 @if ($filter->getFirstOption() !== '')
@@ -34,6 +39,7 @@
         @foreach($filter->getOptions() as $key => $value)
             <div @class([
                 'form-check' => $isBootstrap,
+                'inline-flex gap-2 items-center w-full' => $isDaisyUI
                 ]) wire:key="{{ $tableName }}-filter-{{ $filter->getKey() }}-multiselect-{{ $key }}{{ $filter->hasCustomPosition() ? '-'.$filter->getCustomPosition() : null }}">
                 <input {!! $filter->getWireMethod('filterComponents.'.$filter->getKey()) !!} 
                 id="{{ $tableName }}-filter-{{ $filter->getKey() }}-{{ $loop->index }}{{ $filter->hasCustomPosition() ? '-'.$filter->getCustomPosition() : null }}" 
@@ -53,7 +59,7 @@
                 }}>
                 <label for="{{ $tableName }}-filter-{{ $filter->getKey() }}-{{ $loop->index }}{{ $filter->hasCustomPosition() ? '-'.$filter->getCustomPosition() : null }}" @class([
                     'dark:text-white' => $isTailwind,
-                    'label' => $isDaisyUI,
+                    'flex-1' => $isDaisyUI,
                     'form-check-label' => $isBootstrap,
                 ])>{{ $value }}</label>
             </div>

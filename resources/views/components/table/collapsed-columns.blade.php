@@ -1,4 +1,4 @@
-@aware([ 'tableName', 'primaryKey','isTailwind','isBootstrap'])
+@aware([ 'tableName', 'primaryKey','isTailwind','isDaisyUI','isBootstrap'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -54,7 +54,7 @@
             >
             <div 
                 @class([
-                    'grid gap-1' => ($component->isTailwind() || $component->isDaisyUI()),
+                    'grid gap-1' => ($isTailwind || $isDaisyUI),
                 ])>
                 @foreach($columns as $colIndex => $column)
                     @continue($column->isHidden())

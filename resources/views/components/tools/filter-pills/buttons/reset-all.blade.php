@@ -12,7 +12,7 @@
             {{ __($this->getLocalisationPath.'Clear') }}
         </span>
     </button>
-@if ($isDaisyUI)
+@elseif ($isDaisyUI)
     <button
         wire:click.prevent="setFilterDefaults"
         @class([
