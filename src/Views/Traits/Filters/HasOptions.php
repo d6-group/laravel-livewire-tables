@@ -2,10 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-use Closure;
-use Illuminate\View\ComponentAttributeBag;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait HasOptions
 {
     public array $options = [];
@@ -33,7 +29,7 @@ trait HasOptions
 
     public function getOptions(): array
     {
-        return $this->options ?? $this->options = config($this->optionsPath, []);
+        return $this->options ?? $this->options = (property_exists($this, 'optionsPath') ? config($this->optionsPath, []) : []);
     }
 
     public function getKeys(): array

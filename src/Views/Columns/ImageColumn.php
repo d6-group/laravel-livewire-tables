@@ -20,8 +20,10 @@ class ImageColumn extends Column
     public function __construct(string $title, ?string $from = null)
     {
         parent::__construct($title, $from);
+        if (! isset($from)) {
+            $this->label(fn () => null);
+        }
 
-        $this->label(fn () => null);
     }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -30,11 +32,8 @@ class ImageColumn extends Column
             throw new DataTableConfigurationException('You must specify a location callback for an image column.');
         }
 
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withColumn($this)
-            ->withIsTailwind($this->isTailwind())
-            ->withIsDaisyUI($this->isDaisyUI())
-            ->withIsBootstrap($this->isBootstrap())
             ->withPath(app()->call($this->getLocationCallback(), ['row' => $row]))
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

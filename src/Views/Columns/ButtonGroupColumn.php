@@ -20,17 +20,16 @@ class ButtonGroupColumn extends Column
     {
         parent::__construct($title, $from);
 
-        $this->label(fn () => null);
+        if (! isset($from)) {
+            $this->label(fn () => null);
+        }
     }
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|\Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view($this->getView())
+        return $this->getColumnViewWithDefaults()
             ->withColumn($this)
             ->withRow($row)
-            ->withIsTailwind($this->isTailwind())
-            ->withIsDaisyUI($this->isDaisyUI())
-            ->withIsBootstrap($this->isBootstrap())
             ->withButtons($this->getButtons())
             ->withAttributes($this->hasAttributesCallback() ? app()->call($this->getAttributesCallback(), ['row' => $row]) : []);
     }

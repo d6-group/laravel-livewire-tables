@@ -1,12 +1,14 @@
-@aware(['component','isTailwind','isDaisyUI','isBootstrap'])
+@aware(['isTailwind','isDaisyUI','isBootstrap'])
 @props(['customAttributes' => [], 'displayMinimisedOnReorder' => true])
 
 @if ($isTailwind)
     <tr {{ $attributes
             ->merge($customAttributes)
-            ->class(['bg-white dark:bg-gray-700 dark:text-white' => $customAttributes['default'] ?? true])
-            ->class(['laravel-livewire-tables-reorderingMinimised'])
-            ->except('default')
+            ->class([
+                'laravel-livewire-tables-reorderingMinimised',
+                'bg-white dark:bg-gray-700 dark:text-white' => ($customAttributes['default'] ?? true),
+            ])
+            ->except(['default','default-styling','default-colors'])
         }}
     >
         {{ $slot }}
@@ -24,9 +26,11 @@
 @elseif ($isBootstrap)
     <tr {{ $attributes
             ->merge($customAttributes)
-            ->class(['' => $customAttributes['default'] ?? true])
-            ->class(['laravel-livewire-tables-reorderingMinimised'])
-            ->except('default')
+            ->class([
+                'laravel-livewire-tables-reorderingMinimised',
+                '' => $customAttributes['default'] ?? true,
+            ])
+            ->except(['default','default-styling','default-colors'])
         }}
     >
         {{ $slot }}

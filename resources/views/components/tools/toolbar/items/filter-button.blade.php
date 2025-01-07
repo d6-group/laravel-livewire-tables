@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isDaisyUI','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isDaisyUI','isBootstrap','isBootstrap4','isBootstrap5'])
 @props([])
 
 <div 
@@ -34,7 +34,7 @@
                 @endif
                 @if ($this->isFilterLayoutSlideDown()) x-on:click="filtersOpen = !filtersOpen" @endif
             >
-                @lang('Filters')
+                {{ __($this->getLocalisationPath.'Filters') }}
 
                 @if ($count = $this->getFilterBadgeCount())
                     <span @class([

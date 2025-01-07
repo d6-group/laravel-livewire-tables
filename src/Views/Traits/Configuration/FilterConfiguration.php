@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Rappasoft\LaravelLivewireTables\Views\Filter;
-
 trait FilterConfiguration
 {
     public function setFilterPillTitle(string $title): self
@@ -56,13 +54,6 @@ trait FilterConfiguration
         return $this;
     }
 
-    public function setFilterLabelAttributes(array $filterLabelAttributes): self
-    {
-        $this->filterLabelAttributes = [...['default' => false], ...$filterLabelAttributes];
-
-        return $this;
-    }
-
     public function setGenericDisplayData(array $genericDisplayData = []): self
     {
         $this->genericDisplayData = [
@@ -73,6 +64,8 @@ trait FilterConfiguration
             'isBootstrap' => ($genericDisplayData['isBootstrap4'] || $genericDisplayData['isBootstrap5']),
             'isBootstrap4' => $genericDisplayData['isBootstrap4'],
             'isBootstrap5' => $genericDisplayData['isBootstrap5'],
+            'localisationPath' => $genericDisplayData['localisationPath'] ?? ((config('livewire-tables.use_json_translations', false)) ? 'livewire-tables::' : 'livewire-tables::core.'),
+
         ];
 
         return $this;

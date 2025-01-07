@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
+use Illuminate\View\ComponentAttributeBag;
 use Livewire\Attributes\Computed;
 
 trait PaginationHelpers
@@ -26,6 +27,7 @@ trait PaginationHelpers
         return $this->paginationTheme;
     }
 
+    #[Computed]
     public function paginationIsEnabled(): bool
     {
         return $this->getPaginationStatus() === true;
@@ -68,7 +70,12 @@ trait PaginationHelpers
 
     public function getPerPage(): int
     {
-        return $this->perPage;
+        return $this->perPage ?? $this->getDefaultPerPage();
+    }
+
+    public function getDefaultPerPage(): int
+    {
+        return in_array((int) $this->defaultPerPage, $this->getPerPageAccepted()) ? $this->defaultPerPage : ($this->getPerPageAccepted()[0] ?? 10);
     }
 
     /**
@@ -112,6 +119,7 @@ trait PaginationHelpers
         return $this->paginationCurrentCount;
     }
 
+    #[Computed]
     public function showPaginationDetails(): bool
     {
         return $this->shouldShowPaginationDetails === true;
@@ -127,7 +135,7 @@ trait PaginationHelpers
         if (in_array(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()), $this->getPerPageAccepted(), true)) {
             $this->setPerPage(session($this->getPerPagePaginationSessionKey(), $this->getPerPage()));
         } else {
-            $this->setPerPage($this->getPerPageAccepted()[0] ?? 10);
+            $this->setPerPage($this->getDefaultPerPage());
         }
     }
 
@@ -142,12 +150,6 @@ trait PaginationHelpers
     private function getPerPagePaginationSessionKey(): string
     {
         return $this->tableName.'-perPage';
-    }
-
-    #[Computed]
-    public function getPerPageFieldAttributes(): array
-    {
-        return $this->perPageFieldAttributes;
     }
 
     #[Computed]

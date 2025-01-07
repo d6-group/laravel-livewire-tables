@@ -3,16 +3,18 @@
 namespace Rappasoft\LaravelLivewireTables\Views;
 
 use Illuminate\View\Component;
-use Illuminate\View\ComponentAttributeBag;
+use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
 use Rappasoft\LaravelLivewireTables\Views\Traits\Actions\{HasActionAttributes, HasRoute};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\HasVisibility;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasIcon, HasLabel, HasTheme, HasView, HasWireActions};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasIcon, HasLabel, HasLabelAttributes, HasTheme, HasView, HasWireActions};
 
 class Action extends Component
 {
+    use HasLocalisations;
     use HasActionAttributes;
     use HasIcon;
     use HasLabel;
+    use HasLabelAttributes;
     use HasRoute;
     use HasTheme;
     use HasView;

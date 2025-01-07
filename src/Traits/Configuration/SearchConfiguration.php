@@ -147,20 +147,6 @@ trait SearchConfiguration
         return $this;
     }
 
-    public function setSearchPlaceholder(string $placeholder): self
-    {
-        $this->searchPlaceholder = $placeholder;
-
-        return $this;
-    }
-
-    public function setSearchFieldAttributes(array $attributes = []): self
-    {
-        $this->searchFieldAttributes = $attributes;
-
-        return $this;
-    }
-
     public function setTrimSearchString(bool $status): self
     {
         $this->trimSearchString = $status;

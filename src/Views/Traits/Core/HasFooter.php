@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait HasFooter
 {
@@ -63,7 +63,7 @@ trait HasFooter
         return $callback instanceof Filter;
     }
 
-    public function getFooterContents(mixed $rows, array $filterGenericData): string|HtmlString
+    public function getFooterContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
     {
         $value = null;
         $callback = $this->getFooterCallback();

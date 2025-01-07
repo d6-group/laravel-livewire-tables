@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isDaisyUI','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isDaisyUI','isBootstrap','isBootstrap4','isBootstrap5'])
 <div x-data x-cloak x-show="reorderStatus"
     @class([
         'mr-0 mr-md-2 mb-3 mb-md-0' => $this->isBootstrap4,
@@ -15,11 +15,11 @@
         ])
     >
         <span x-cloak x-show="currentlyReorderingStatus">
-            @lang('Cancel')
+         {{ __($this->getLocalisationPath.'cancel') }}
         </span>
 
         <span x-cloak x-show="!currentlyReorderingStatus">
-            @lang('Reorder')
+        {{ __($this->getLocalisationPath.'Reorder') }}
         </span>
 
     </button>
@@ -35,7 +35,7 @@
             ])
         >
             <span>
-                @lang('Save')
+            {{ __($this->getLocalisationPath.'save') }}
             </span>
         </button>
     </div>

@@ -2,8 +2,6 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Filters;
 
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
-
 trait HasCustomPosition
 {
     public ?string $filterPosition = null;
@@ -69,7 +67,6 @@ trait HasCustomPosition
 
     public function setFilterSlidedownRow(string $filterSlidedownRow): self
     {
-        //$this->filterSlidedownRow = (is_int($filterSlidedownRow) ? $filterSlidedownRow : intval($filterSlidedownRow));
         $this->filterSlidedownRow = intval($filterSlidedownRow);
 
         return $this;
@@ -77,7 +74,6 @@ trait HasCustomPosition
 
     public function setFilterSlidedownColspan(string $filterSlidedownColspan): self
     {
-        //$this->filterSlidedownColspan = (is_int($filterSlidedownColspan) ? $filterSlidedownColspan : intval($filterSlidedownColspan));
         $this->filterSlidedownColspan = intval($filterSlidedownColspan);
 
         return $this;

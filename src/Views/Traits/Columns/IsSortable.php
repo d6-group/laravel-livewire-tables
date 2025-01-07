@@ -2,9 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Columns;
 
-use Closure;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
 
 trait IsSortable
 {
@@ -42,11 +40,19 @@ trait IsSortable
         return $this;
     }
 
+    /**
+     * Used internally
+     * Used in resources/views/components/table/th.blade.php
+     */
     public function getSortCallback(): ?callable
     {
         return $this->sortCallback;
     }
 
+    /**
+     * Used internally
+     * Used in resources/views/components/table/th.blade.php
+     */
     public function isSortable(): bool
     {
         return $this->hasField() && $this->sortable === true;
@@ -81,25 +87,55 @@ trait IsSortable
         return $this->sortingPillDirectionAsc !== null && $this->sortingPillDirectionDesc !== null;
     }
 
-    public function getCustomSortingPillDirections(string $direction): string
+    public function getCustomSortingPillDirections(string $direction, ?string $defaultLabelAsc = 'A-Z', ?string $defaultLabelDesc = 'Z-A'): string
     {
         if ($direction === 'asc') {
-            return $this->sortingPillDirectionAsc;
+            return $this->sortingPillDirectionAsc ?? $defaultLabelAsc;
         }
 
         if ($direction === 'desc') {
-            return $this->sortingPillDirectionDesc;
+            return $this->sortingPillDirectionDesc ?? $defaultLabelDesc;
         }
 
-        return __('N/A');
+        return __($this->getLocalisationPath().'not_applicable');
+    }
+
+    public function getCustomSortingPillDirectionsLabel(string $direction, ?string $defaultLabelAsc = 'A-Z', ?string $defaultLabelDesc = 'Z-A'): string
+    {
+        if ($direction === 'asc') {
+            return $this->sortingPillDirectionAsc ?? $defaultLabelAsc;
+        }
+
+        if ($direction === 'desc') {
+            return $this->sortingPillDirectionDesc ?? $defaultLabelDesc;
+        }
+
+        return __($this->getLocalisationPath().'not_applicable');
     }
 
     public function getSortingPillDirection(DataTableComponent $component, string $direction): string
     {
         if ($this->hasCustomSortingPillDirections()) {
-            return $this->getCustomSortingPillDirections($direction);
+            return $this->getCustomSortingPillDirections($direction, $component->getDefaultSortingLabelAsc(), $component->getDefaultSortingLabelDesc());
         }
 
         return $direction === 'asc' ? $component->getDefaultSortingLabelAsc() : $component->getDefaultSortingLabelDesc();
+    }
+
+    public function getSortingPillDirectionLabel(string $direction, ?string $defaultLabelAsc = 'A-Z', ?string $defaultLabelDesc = 'Z-A'): string
+    {
+        if ($this->hasCustomSortingPillDirections()) {
+            return $this->getCustomSortingPillDirectionsLabel($direction, $defaultLabelAsc, $defaultLabelDesc);
+        }
+
+        return $direction === 'asc' ? $defaultLabelAsc : $defaultLabelDesc;
+    }
+
+    /**
+     * Used in resources/views/components/table/th.blade.php
+     */
+    public function getColumnSortKey(): string
+    {
+        return $this->isSortable() ? $this->getColumnSelectName() : $this->getSlug();
     }
 }

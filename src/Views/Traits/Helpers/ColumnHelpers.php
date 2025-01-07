@@ -9,7 +9,6 @@ use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\Views\Columns\LinkColumn;
-use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait ColumnHelpers
 {
@@ -211,33 +210,18 @@ trait ColumnHelpers
         return $this->hasTableRowUrl;
     }
 
-    public function isDaisyUI(): bool
-    {
-        return $this->theme = 'daisyui';
-    }
-
-    public function isTailwind(): bool
-    {
-        return $this->theme != 'bootstrap-4' && $this->theme != 'bootstrap-5';
-    }
-
-    public function isBootstrap(): bool
-    {
-        return $this->theme == 'bootstrap-4' || $this->theme == 'bootstrap-5';
-    }
-
-    public function isBootstrap4(): bool
-    {
-        return $this->theme == 'bootstrap-4';
-    }
-
-    public function isBootstrap5(): bool
-    {
-        return $this->theme == 'bootstrap-5';
-    }
-
     public function getIsReorderColumn(): bool
     {
         return $this->isReorderColumn;
+    }
+
+    public function getColumnIndex(): int
+    {
+        return $this->columnIndex;
+    }
+
+    public function getRowIndex(): int
+    {
+        return $this->rowIndex;
     }
 }

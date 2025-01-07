@@ -2,13 +2,8 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Traits\Configuration;
 
-use Closure;
-
 trait BooleanColumnConfiguration
 {
-    /**
-     * @return $this
-     */
     public function setSuccessValue(bool $value): self
     {
         $this->successValue = $value;
@@ -16,9 +11,6 @@ trait BooleanColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function setView(string $view): self
     {
         $this->view = $view;
@@ -26,9 +18,6 @@ trait BooleanColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
     public function icons(): self
     {
         $this->type = 'icons';
@@ -36,12 +25,17 @@ trait BooleanColumnConfiguration
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function yesNo()
+    public function yesNo(): self
     {
         $this->type = 'yes-no';
+
+        return $this;
+    }
+
+    public function toggleable(string $toggleMethod): self
+    {
+        $this->isToggleable = true;
+        $this->toggleMethod = $toggleMethod;
 
         return $this;
     }

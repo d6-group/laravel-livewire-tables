@@ -24,18 +24,4 @@ trait SecondaryHeaderConfiguration
 
         return $this;
     }
-
-    public function setSecondaryHeaderTrAttributes(callable $callback): self
-    {
-        $this->secondaryHeaderTrAttributesCallback = $callback;
-
-        return $this;
-    }
-
-    public function setSecondaryHeaderTdAttributes(callable $callback): self
-    {
-        $this->secondaryHeaderTdAttributesCallback = $callback;
-
-        return $this;
-    }
 }

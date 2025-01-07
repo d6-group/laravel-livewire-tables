@@ -3,14 +3,16 @@
 namespace Rappasoft\LaravelLivewireTables\Views\Traits;
 
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
+use Rappasoft\LaravelLivewireTables\Traits\Core\HasLocalisations;
+use Rappasoft\LaravelLivewireTables\Views\Traits\Columns\{HasColumnView, HasVisibility, IsCollapsible, IsSearchable, IsSelectable, IsSortable};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Configuration\ColumnConfiguration;
-use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes,HasFooter,HasSecondaryHeader,HasView};
+use Rappasoft\LaravelLivewireTables\Views\Traits\Core\{HasAttributes, HasFooter, HasLabelAttributes, HasSecondaryHeader, HasTheme};
 use Rappasoft\LaravelLivewireTables\Views\Traits\Helpers\{ColumnHelpers,RelationshipHelpers};
 
 trait IsColumn
 {
-    use ColumnConfiguration,
+    use HasLocalisations,
+        ColumnConfiguration,
         ColumnHelpers,
         RelationshipHelpers,
         IsCollapsible,
@@ -18,9 +20,11 @@ trait IsColumn
         IsSelectable,
         IsSortable,
         HasAttributes,
+        HasColumnView,
         HasFooter,
+        HasLabelAttributes,
         HasSecondaryHeader,
-        HasView,
+        HasTheme,
         HasVisibility;
 
     protected ?DataTableComponent $component = null;
@@ -57,7 +61,9 @@ trait IsColumn
 
     protected bool $hasTableRowUrl = false;
 
-    protected string $theme = 'tailwind';
-
     protected bool $isReorderColumn = false;
+
+    protected ?int $columnIndex;
+
+    protected ?int $rowIndex;
 }

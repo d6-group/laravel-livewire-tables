@@ -4,14 +4,15 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
-use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\SortingConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForSort;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\SortingHelpers;
 
 trait WithSorting
 {
     use SortingConfiguration,
         SortingHelpers;
+    use HasQueryStringForSort;
 
     public array $sorts = [];
 
@@ -31,15 +32,9 @@ trait WithSorting
 
     public string $defaultSortingLabelDesc = 'Z-A';
 
-    public function queryStringWithSorting(): array
+    public function mountWithSorting(): void
     {
-        if ($this->queryStringIsEnabled() && $this->sortingIsEnabled()) {
-            return [
-                'sorts' => ['except' => null, 'history' => false, 'keep' => false, 'as' => $this->getQueryStringAlias().'-sorts'],
-            ];
-        }
-
-        return [];
+        $this->setupDefaultSorting();
     }
 
     public function sortBy(string $columnSelectName): ?string
@@ -76,11 +71,7 @@ trait WithSorting
 
     public function applySorting(): Builder
     {
-        if ($this->hasDefaultSort() && ! $this->hasSorts()) {
-            $this->setBuilder($this->getBuilder()->orderBy($this->getDefaultSortColumn(), $this->getDefaultSortDirection()));
 
-            return $this->getBuilder();
-        }
         $allCols = $this->getColumns();
 
         foreach ($this->getSorts() as $column => $direction) {

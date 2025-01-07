@@ -1,8 +1,14 @@
-@aware(['component','isTailwind','isDaisyUI','isBootstrap'])
+@aware(['isTailwind','isDaisyUI','isBootstrap','isBootstrap'])
+@php($toolsAttributes = $this->getToolsAttributesBag())
 
-<div @class([
-    'flex-col' => $isTailwind || $isDaisyUI,
-    'd-flex flex-column ' => ($isBootstrap),
-])>
+<div {{
+    $toolsAttributes->merge()
+        ->class([
+            'flex-col' => ($isTailwind || $isDaisyUI || $isBootstrap) && ($toolsAttributes['default-styling'] ?? true),
+            'd-flex flex-column' => $isBootstrap && ($toolsAttributes['default-styling'] ?? true)
+        ])
+        ->except(['default','default-styling','default-colors'])
+    }}
+>
     {{ $slot }}
 </div>

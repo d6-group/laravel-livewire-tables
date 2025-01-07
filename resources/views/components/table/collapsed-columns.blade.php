@@ -1,4 +1,4 @@
-@aware(['component', 'tableName', 'primaryKey','isTailwind','isDaisyUI','isBootstrap'])
+@aware([ 'tableName', 'primaryKey','isTailwind','isBootstrap'])
 @props(['row', 'rowIndex'])
 
 @php
@@ -34,12 +34,14 @@
         wire:loading.class.delay="opacity-50 dark:bg-gray-900 dark:opacity-60"
         {{
         $attributes->merge($customAttributes)
-                ->class(['hidden bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0)])
-                ->class(['hidden bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0)])
-                ->class(['hidden' => $isDaisyUI])
-                ->class(['d-none bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true))])
-                ->class(['d-none bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true))])
-                ->except(['default'])
+                ->class([
+                    'hidden bg-white dark:bg-gray-700 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 === 0),
+                    'hidden bg-gray-50 dark:bg-gray-800 dark:text-white rappasoft-striped-row' => ($isTailwind && ($customAttributes['default'] ?? true) && $rowIndex % 2 !== 0),
+                    'hidden' => $isDaisyUI,
+                    'd-none bg-light rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 === 0 && ($customAttributes['default'] ?? true)),
+                    'd-none bg-white rappasoft-striped-row' => ($isBootstrap && $rowIndex % 2 !== 0 && ($customAttributes['default'] ?? true)),
+                ])
+                ->except(['default','default-styling','default-colors'])
         }}
 
     >
@@ -59,7 +61,7 @@
                     @continue($this->columnSelectIsEnabled() && ! $this->columnSelectIsEnabledForColumn($column))
 
                     <p wire:key="{{ $tableName }}-row-{{ $row->{$primaryKey} }}-collapsed-contents-{{ $colIndex }}"
-                    
+
                         @class([
                             'block mb-2' => ($isTailwind || $isDaisyUI) && $column->shouldCollapseAlways(),
                             'block mb-2 sm:hidden' => ($isTailwind || $isDaisyUI) && !$column->shouldCollapseAlways() && !$column->shouldCollapseOnTablet() && !$column->shouldCollapseOnMobile(),

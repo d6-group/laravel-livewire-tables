@@ -3,6 +3,8 @@
 namespace Rappasoft\LaravelLivewireTables\Tests\Http\Livewire;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\App;
+use Livewire\Attributes\On;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Breed;
 use Rappasoft\LaravelLivewireTables\Tests\Models\Pet;
@@ -23,6 +25,11 @@ class PetsTable extends DataTableComponent
     public $model = Pet::class;
 
     public string $paginationTest = 'standard';
+
+    public function changeLocale(string $locale)
+    {
+        App::setLocale($locale);
+    }
 
     public function enableDetailedPagination(string $type = 'standard')
     {

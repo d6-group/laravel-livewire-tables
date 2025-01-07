@@ -3,6 +3,7 @@
 namespace Rappasoft\LaravelLivewireTables\Traits\Helpers;
 
 use Livewire\Attributes\Computed;
+use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait ReorderingHelpers
 {
@@ -92,14 +93,8 @@ trait ReorderingHelpers
         return $this->getTableName().'-reordering-backup';
     }
 
-    /**
-     * Used to get attributes for the <th> for Bulk Actions
-     *
-     * @return array<mixed>
-     */
-    #[Computed]
-    public function getReorderThAttributes(): array
+    public function getReorderColumn(): Column
     {
-        return $this->reorderThAttributes ?? ['default' => true];
+        return Column::make('reorder')->label(fn () => null);
     }
 }

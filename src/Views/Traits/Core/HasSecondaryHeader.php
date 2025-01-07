@@ -4,7 +4,7 @@ namespace Rappasoft\LaravelLivewireTables\Views\Traits\Core;
 
 use Illuminate\Support\HtmlString;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
-use Rappasoft\LaravelLivewireTables\Views\{Column,Filter};
+use Rappasoft\LaravelLivewireTables\Views\Filter;
 
 trait HasSecondaryHeader
 {
@@ -63,7 +63,7 @@ trait HasSecondaryHeader
         return $callback instanceof Filter;
     }
 
-    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): string|HtmlString
+    public function getSecondaryHeaderContents(mixed $rows, array $filterGenericData): \Illuminate\Contracts\Foundation\Application|\Illuminate\View\Factory|\Illuminate\View\View|string|HtmlString
     {
         $value = null;
         $callback = $this->getSecondaryHeaderCallback();

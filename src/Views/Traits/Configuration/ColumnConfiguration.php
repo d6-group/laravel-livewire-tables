@@ -84,13 +84,6 @@ trait ColumnConfiguration
         $this->displayColumnLabel = $status;
     }
 
-    public function setTheme(string $theme): self
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
     public function setHasTableRowUrl(bool $hasTableRowUrl): self
     {
         $this->hasTableRowUrl = $hasTableRowUrl;
@@ -101,6 +94,28 @@ trait ColumnConfiguration
     public function setIsReorderColumn(bool $isReorderColumn): self
     {
         $this->isReorderColumn = $isReorderColumn;
+
+        return $this;
+    }
+
+    public function setIndexes(int $rowIndex, int $columnIndex): self
+    {
+        $this->setRowIndex($rowIndex);
+        $this->setColumnIndex($columnIndex);
+
+        return $this;
+    }
+
+    public function setColumnIndex(int $columnIndex): self
+    {
+        $this->columnIndex = $columnIndex;
+
+        return $this;
+    }
+
+    public function setRowIndex(int $rowIndex): self
+    {
+        $this->rowIndex = $rowIndex;
 
         return $this;
     }

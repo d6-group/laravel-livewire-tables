@@ -1,6 +1,6 @@
 ---
 title: Livewire Component (beta)
-weight: 12
+weight: 14
 ---
 
 Livewire Component Columns allow for the use of a Livewire Component as a Column.
@@ -10,7 +10,6 @@ This is **not recommended** as due to the nature of Livewire, it becomes ineffic
 ## component
 ```
 LivewireComponentColumn::make('Action')
-    ->title(fn($row) => 'Edit')
     ->component('PathToLivewireComponent'),
 
 ```

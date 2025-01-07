@@ -2,6 +2,7 @@
 
 namespace Rappasoft\LaravelLivewireTables\Views\Columns;
 
+use Closure;
 use Illuminate\Database\Eloquent\Model;
 use Rappasoft\LaravelLivewireTables\Exceptions\DataTableConfigurationException;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -17,7 +18,7 @@ class ColorColumn extends Column
         ColorColumnHelpers;
     use HasDefaultStringValue;
 
-    public ?object $colorCallback = null;
+    public ?Closure $colorCallback;
 
     protected string $view = 'livewire-tables::includes.columns.color';
 
@@ -32,10 +33,7 @@ class ColorColumn extends Column
 
     public function getContents(Model $row): null|string|\Illuminate\Support\HtmlString|DataTableConfigurationException|\Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
-        return view($this->getView())
-            ->withIsTailwind($this->isTailwind())
-            ->withIsDaisyUI($this->isDaisyUI())
-            ->withIsBootstrap($this->isBootstrap())
+        return $this->getColumnViewWithDefaults()
             ->withColor($this->getColor($row))
             ->withAttributeBag($this->getAttributeBag($row));
     }

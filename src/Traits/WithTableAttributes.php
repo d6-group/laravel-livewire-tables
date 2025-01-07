@@ -21,15 +21,19 @@ trait WithTableAttributes
 
     protected array $tbodyAttributes = [];
 
-    protected ?object $thAttributesCallback;
+    protected ?Closure $thAttributesCallback;
 
-    protected ?object $thSortButtonAttributesCallback;
+    protected ?Closure $thSortButtonAttributesCallback;
 
-    protected ?object $trAttributesCallback;
+    protected ?Closure $thSortIconAttributesCallback;
 
-    protected ?object $tdAttributesCallback;
+    protected ?Closure $trAttributesCallback;
 
-    protected ?object $trUrlCallback;
+    protected ?Closure $tdAttributesCallback;
 
-    protected ?object $trUrlTargetCallback;
+    protected ?Closure $trUrlCallback;
+
+    protected ?Closure $trUrlTargetCallback;
+
+    public bool $shouldBeDisplayed = true;
 }

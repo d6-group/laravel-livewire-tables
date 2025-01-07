@@ -1,53 +1,21 @@
-@aware(['component', 'tableName','isTailwind','isDaisyUI', 'isBootstrap'])
+@aware(['isTailwind','isDaisyUI', 'isBootstrap'])
 
 <div 
     @class([
-        'mb-3 mb-md-0 input-group' => $this->isBootstrap,
-        'flex rounded-md shadow-sm' => $this->isTailwind,
-        'flex relative' => $this->isDaisyUI,
+        'mb-3 mb-md-0 input-group' => $isBootstrap,
+        'rounded-md shadow-sm' => $isTailwind,
+        'flex relative' => $isDaisyUI,
+        'flex' => !$this->hasSearchIcon,
+        'relative inline-flex flex-row' => $this->hasSearchIcon,
     ])>
-        <input
-            wire:model{{ $this->getSearchOptions() }}="search"
-            placeholder="{{ $this->getSearchPlaceholder() }}"
-            type="text"
-            {{ 
-                $attributes->merge($this->getSearchFieldAttributes())
-                ->class([
-                    'block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-none rounded-l-md focus:ring-0 focus:border-gray-300' => $this->isTailwind && $this->hasSearch() && $this->getSearchFieldAttributes()['default'] ?? true,
-                    'block w-full border-gray-300 rounded-md shadow-sm transition duration-150 ease-in-out sm:text-sm sm:leading-5 dark:bg-gray-700 dark:text-white dark:border-gray-600 rounded-md focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' => $this->isTailwind && !$this->hasSearch() && $this->getSearchFieldAttributes()['default'] ?? true,
-                    'w-full input input-sm input-bordered pr-9' => $this->isDaisyUI && $this->hasSearch() && $this->getSearchFieldAttributes()['default'] ?? true,
-                    'w-full input input-sm input-bordered text-base-content' => $this->isDaisyUI && !$this->hasSearch() && $this->getSearchFieldAttributes()['default'] ?? true,
-                    'form-control' => $this->isBootstrap && $this->getSearchFieldAttributes()['default'] ?? true,
-                ])
-                ->except('default') 
-            }}
 
-        />
-
-        @if ($this->hasSearch())
-            <div @class([
-                    'd-inline-flex h-100 align-items-center ' => $this->isBootstrap,
-                    'absolute top-0 right-0 h-full' => $this->isDaisyUI,
-                ])>
-                <div
-                    wire:click="clearSearch"
-
-                    @class([
-                            'btn btn-outline-secondary d-inline-flex h-100 align-items-center' => $this->isBootstrap,
-                            'inline-flex h-full items-center px-3 text-gray-500 bg-gray-50 rounded-r-md border border-l-0 border-gray-300 cursor-pointer sm:text-sm dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:hover:bg-gray-600' => $this->isTailwind,
-                            'inline-flex h-full items-center px-3 cursor-pointer sm:text-sm' => $this->isDaisyUI,
-                        ])
-                >
-                    @if($this->isTailwind)
-                        <x-heroicon-m-x-mark class='w-4 h-4' />
-                    @elseif($this->isDaisyUI)
-                        <x-heroicon-m-x-mark class='w-4 h-4' />
-                    @else
-                        <x-heroicon-m-x-mark class="laravel-livewire-tables-btn-smaller" />
-                    @endif
-                </div>
-            </div>
+        @if($this->hasSearchIcon)
+            <x-livewire-tables::tools.toolbar.items.search.icon :searchIcon="$this->getSearchIcon" :searchIconClasses="$this->getSearchIconClasses" :searchIconOtherAttributes="$this->getSearchIconOtherAttributes"  />
         @endif
 
+        <x-livewire-tables::tools.toolbar.items.search.input />
 
+        @if ($this->hasSearch)
+            <x-livewire-tables::tools.toolbar.items.search.remove />
+        @endif
 </div>

@@ -151,11 +151,13 @@ trait SortingHelpers
         return $this->getSortingPillsStatus() === false;
     }
 
+    #[Computed]
     public function getDefaultSortingLabelAsc(): string
     {
         return $this->defaultSortingLabelAsc;
     }
 
+    #[Computed]
     public function getDefaultSortingLabelDesc(): string
     {
         return $this->defaultSortingLabelDesc;
@@ -164,6 +166,6 @@ trait SortingHelpers
     #[Computed]
     public function showSortPillsSection(): bool
     {
-        return $this->sortingPillsAreEnabled() && $this->hasSorts();
+        return $this->sortingIsEnabled() && $this->sortingPillsAreEnabled() && $this->hasSorts();
     }
 }

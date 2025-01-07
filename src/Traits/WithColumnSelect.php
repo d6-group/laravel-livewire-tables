@@ -5,13 +5,14 @@ namespace Rappasoft\LaravelLivewireTables\Traits;
 use Livewire\Attributes\Locked;
 use Rappasoft\LaravelLivewireTables\Events\ColumnsSelected;
 use Rappasoft\LaravelLivewireTables\Traits\Configuration\ColumnSelectConfiguration;
+use Rappasoft\LaravelLivewireTables\Traits\Core\QueryStrings\HasQueryStringForColumnSelect;
 use Rappasoft\LaravelLivewireTables\Traits\Helpers\ColumnSelectHelpers;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 
 trait WithColumnSelect
 {
     use ColumnSelectConfiguration,
-        ColumnSelectHelpers;
+        ColumnSelectHelpers,
+        HasQueryStringForColumnSelect;
 
     #[Locked]
     public array $columnSelectColumns = ['setupRun' => false, 'selected' => [], 'deselected' => [], 'defaultdeselected' => []];
@@ -32,13 +33,11 @@ trait WithColumnSelect
 
     protected bool $columnSelectStatus = true;
 
-    protected bool $rememberColumnSelectionStatus = true;
-
     protected bool $columnSelectHiddenOnMobile = false;
 
     protected bool $columnSelectHiddenOnTablet = false;
 
-    protected function queryStringWithColumnSelect(): array
+    /*protected function queryStringWithColumnSelect(): array
     {
         if ($this->queryStringIsEnabled() && $this->columnSelectIsEnabled()) {
             return [
@@ -47,17 +46,24 @@ trait WithColumnSelect
         }
 
         return [];
-    }
+    }*/
 
     public function bootedWithColumnSelect(): void
     {
+        $this->callHook('configuringColumnSelect');
+        $this->callTraitHook('configuringColumnSelect');
+
         $this->setupColumnSelect();
+
+        $this->callHook('configuredColumnSelect');
+        $this->callTraitHook('configuredColumnSelect');
+
     }
 
     public function updatedSelectedColumns(): void
     {
         // The query string isn't needed if it's the same as the default
-        session([$this->getColumnSelectSessionKey() => $this->selectedColumns]);
+        $this->storeColumnSelectValues();
         if ($this->getEventStatusColumnSelect()) {
             event(new ColumnsSelected($this->getTableName(), $this->getColumnSelectSessionKey(), $this->selectedColumns));
         }
@@ -67,7 +73,7 @@ trait WithColumnSelect
     {
         if (! $this->getComputedPropertiesStatus()) {
             $view->with([
-                'selectedVisibleColumns' => $this->getVisibleColumns(),
+                'selectedVisibleColumns' => $this->selectedVisibleColumns(),
             ]);
         }
     }
