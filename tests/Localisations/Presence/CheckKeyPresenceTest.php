@@ -24,7 +24,7 @@ final class CheckKeyPresenceTest extends BaseLocalisationCase
         $localisedStrings = self::getLocaleStrings($locale);
         foreach ($engStrings as $key => $value) {
             // @TODO: Check if the key is present in the localised strings
-            if (!array_key_exists($key, $localisedStrings)) {
+            if (! array_key_exists($key, $localisedStrings)) {
                 continue;
             }
 
