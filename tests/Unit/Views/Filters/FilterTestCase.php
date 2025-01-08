@@ -21,6 +21,7 @@ abstract class FilterTestCase extends TestCase
             'filterLayout' => 'tailwind',
             'tableName' => 'test123',
             'isTailwind' => true,
+            'isDaisyUI' => false,
             'isBootstrap' => false,
             'isBootstrap4' => false,
             'isBootstrap5' => false,
