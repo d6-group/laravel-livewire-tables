@@ -33,7 +33,7 @@
                                 'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
                                 'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 '' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
-                                'ml-1 btn btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
+                                'ml-1 btn btn-ghost btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
                                 'btn btn-primary btn-sm' => $this->isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
                             ])
                         }}
@@ -59,7 +59,7 @@
                         {{ 
                             $this->getBulkActionsRowButtonAttributesBag->class([
                                 'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'ml-1 btn btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
+                                'ml-1 btn btn-ghost btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
                                 'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 '' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 'btn btn-primary btn-sm' => $this->isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
@@ -76,7 +76,7 @@
                         {{ 
                             $this->getBulkActionsRowButtonAttributesBag->class([
                                 'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'ml-1 btn btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
+                                'ml-1 btn btn-ghost btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
                                 'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 '' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 'btn btn-primary btn-sm' => $this->isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)
@@ -93,7 +93,7 @@
                         {{ 
                             $this->getBulkActionsRowButtonAttributesBag->class([
                                 'ml-1 underline text-sm leading-5 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
-                                'ml-1 btn btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
+                                'ml-1 btn btn-ghost btn-sm underline' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true),
                                 'text-blue-600 text-gray-700 focus:text-gray-800 dark:text-white dark:hover:text-gray-400' => $this->isTailwind && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 '' => $this->isDaisyUI && ($this->getBulkActionsRowButtonAttributes['default-colors'] ?? true),
                                 'btn btn-primary btn-sm' => $this->isBootstrap && ($this->getBulkActionsRowButtonAttributes['default-styling'] ?? true)

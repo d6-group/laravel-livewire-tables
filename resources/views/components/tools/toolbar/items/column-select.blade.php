@@ -91,7 +91,7 @@
                 <button
                     x-on:click="open = !open"
                     type="button"
-                    class="btn btn-sm"
+                    class="inline-flex justify-center w-full btn btn-ghost btn-sm input-bordered font-medium"
                     aria-haspopup="true"
                     x-bind:aria-expanded="open"
                     aria-expanded="true"

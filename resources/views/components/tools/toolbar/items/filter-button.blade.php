@@ -40,7 +40,7 @@
                     <span @class([
                             'badge badge-info' => $this->isBootstrap,
                             'ml-1 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-indigo-100 text-indigo-800 capitalize dark:bg-indigo-200 dark:text-indigo-900' => $this->isTailwind,
-                            'ml-1 badge' => $this->isDaisyUI,
+                            'ml-1 badge badge-primary' => $this->isDaisyUI,
                         ])>
                         {{ $count }}
                     </span>

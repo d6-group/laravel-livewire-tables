@@ -38,7 +38,7 @@
             ->class([
                 'w-full md:w-56' => $this->getFilterPopoverAttributes['default-width'] ?? true,
                 'origin-top-left absolute left-0 mt-2 rounded-md shadow-lg ring-1 ring-opacity-5 divide-y focus:outline-none z-50' => $this->getFilterPopoverAttributes['default-styling'] ?? true,
-                'bg-base-100 divide-base-content ring-black' => $this->getFilterPopoverAttributes['default-colors'] ?? true,
+                'bg-base-100 divide-base-content/25 ring-black' => $this->getFilterPopoverAttributes['default-colors'] ?? true,
             ])
             ->except(['x-cloak', 'x-show', 'default','default-width', 'default-styling','default-colors']) 
         }}>

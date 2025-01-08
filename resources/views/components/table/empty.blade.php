@@ -13,7 +13,7 @@
 @elseif ($isDaisyUI)
     <tr {{ $attributes }}>
         <td colspan="{{ $this->getColspanCount() }}">
-            <div class="flex justify-center items-center space-x-2 bg-base-content">
+            <div class="flex justify-center items-center space-x-2">
                 <span class="font-medium py-8">{{ $this->getEmptyMessage() }}</span>
             </div>
         </td>

@@ -58,7 +58,7 @@
                         wire:key="{{ $tableName }}-sorting-pill-{{ $columnSelectName }}"
                         class="badge badge-neutral"
                     >
-                        {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirection($component, $direction) }}
+                    {{ $column->getSortingPillTitle() }}: {{ $column->getSortingPillDirectionLabel($direction, $this->getDefaultSortingLabelAsc, $this->getDefaultSortingLabelDesc) }}
 
                         <button
                             wire:click="clearSort('{{ $columnSelectName }}')"

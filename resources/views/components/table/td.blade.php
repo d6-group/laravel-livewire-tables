@@ -15,7 +15,7 @@
             $attributes->merge($customAttributes)
                 ->class([
                     'px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white' => $isTailwind && ($customAttributes['default'] ?? true),
-                    'text-sm font-medium' => $isDaisyUI && ($customAttributes['default'] ?? true),
+                    'whitespace-nowrap text-sm font-medium' => $isDaisyUI && ($customAttributes['default'] ?? true),
                     'hidden' =>  ($isTailwind || $isDaisyUI) && $column && $column->shouldCollapseAlways(),
                     'hidden md:table-cell' => ($isTailwind || $isDaisyUI) && $column && $column->shouldCollapseOnMobile(),
                     'hidden lg:table-cell' => ($isTailwind || $isDaisyUI) && $column && $column->shouldCollapseOnTablet(),
